@@ -1,0 +1,315 @@
+/* Root and Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #FF6584;
+    --secondary-color: #282828;
+    --bg-color: #121212;
+    --text-color: #ffffff;
+}
+
+/* Define the GoodTimes font for titles */
+@font-face {
+    font-family: 'GoodTimes';
+    src: url('assets/fonts/GoodTimesRg.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Define the Roboto font for body text */
+@font-face {
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/* Body Styling */
+body {
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif; /* Default body font */
+    font-size: clamp(22px, 2vw, 26px);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-weight: 400;
+    background-color: var(--bg-color); /* Ensure dark background */
+}
+
+/* Enhanced Isometric Grid Background */
+body {
+    background-image: 
+        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px), /* Diagonal line at 150 degrees */
+        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);  /* Diagonal line at 30 degrees */
+    background-size: 40px 40px; /* Larger grid for visibility */
+}
+
+/* Button Styling */
+button, .btn {
+    font-family: 'GoodTimes', sans-serif; /* Title font for buttons */
+    font-size: clamp(26px, 2vw, 30px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Font application for specific sections */
+h1, h2, h3, .badge{
+    font-family: 'GoodTimes', sans-serif; /* GoodTimes for major headings and badges */
+    font-weight: 500;
+}
+
+/* Override to use Roboto for specific titles */
+.project-card h5, .skills-container .skill-item h4, #skills-technologies .skill-item h4 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+/* Sections */
+#hero, #past-projects, #skills-technologies, #gaming-projects, #about-me {
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
+    color: var(--text-color);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px #000000;
+}
+
+#hero button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#hero button:hover {
+    transform: scale(1.1);
+    background-color: #ffffff;
+    color: var(--primary-color);
+}
+
+/* Particle Effect Containers */
+#particles-js-hero, #particles-js-projects, #particles-js-skills, #particles-js-gaming, #particles-js-about {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Project and Skill Card Styling */
+.skill-item, .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 200px;
+    min-height: 180px;
+    margin: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.skill-item h4, .project-card h5 {
+    flex-grow: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Uniform carousel titles */
+.project-card h5 {
+    font-size: 1.5em;
+    line-height: 1.2em;
+    min-height: 60px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.project-card:hover, .skill-item:hover {
+    transform: translateY(-10px);
+}
+
+/* Tech Chips Styling */
+.tech-chips, .tech-chips-vertical {
+    display: flex;
+    gap: 6px;
+    padding-top: 5px;
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.tech-chips::-webkit-scrollbar, .tech-chips-vertical::-webkit-scrollbar {
+    display: none;
+}
+
+/* Horizontal and Vertical Chips Styling */
+.tech-chips span, .tech-chips-vertical span {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.6em;
+    white-space: nowrap;
+    display: inline-block;
+    cursor: grab;
+    margin: 2px;
+}
+
+/* Cursor style when dragging */
+.tech-chips span.dragging, .tech-chips-vertical span.dragging {
+    cursor: grabbing;
+    opacity: 0.8;
+}
+
+/* Vertical Tech Chips */
+.tech-chips-vertical {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 5px;
+    max-height: 120px;
+    overflow-y: auto;
+    cursor: grab;
+    scrollbar-width: none;
+}
+
+.tech-chips-vertical.active, .tech-chips.active {
+    cursor: grabbing;
+    opacity: 0.9;
+}
+
+/* About Me Section */
+#about-me .about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#about-me .profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#about-me .about-details p {
+    font-size: 0.9em;
+    flex: 1;
+    text-align: left;
+    padding-left: 20px;
+}
+
+#about-me .social-links .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.social-links .btn i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.btn-github {
+    background-color: #333;
+}
+.btn-github:hover {
+    background-color: #555;
+}
+.btn-linkedin {
+    background-color: #0077b5;
+}
+.btn-linkedin:hover {
+    background-color: #005582;
+}
+
+.no-select {
+    user-select: none;
+}
+
+body, h1, h2, h3, p, .project-card .card-title, .badge {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Featured Projects */
+.project-card {
+    min-height: 800px;
+    max-height: 800px;
+}
+
+.project-image {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.card-text{
+    font-size: clamp(16px, 2vw, 20px);
+}
