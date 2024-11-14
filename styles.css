@@ -6,12 +6,12 @@
 }
 :root {
     --primary-color: #FF6584;
+    /* --primary-color: rgb(200, 255, 0); */
     --secondary-color: #282828;
     --bg-color: #121212;
     --text-color: #ffffff;
 }
 
-/* Define the GoodTimes font for titles */
 @font-face {
     font-family: 'GoodTimes';
     src: url('assets/fonts/GoodTimesRg.otf');
@@ -19,7 +19,6 @@
     font-style: normal;
 }
 
-/* Define the Roboto font for body text */
 @font-face {
     font-family: 'Roboto';
     src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
@@ -27,68 +26,93 @@
     font-style: normal;
 }
 
-html{
+html {
     scroll-behavior: smooth;
+    overflow: hidden;
+    height: 100%;
 }
 
 /* Body Styling */
 body {
     color: var(--text-color);
-    font-family: 'Roboto', sans-serif; /* Default body font */
+    font-family: 'Roboto', sans-serif;
     font-size: clamp(22px, 2vw, 26px);
     line-height: 1.6;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-weight: 400;
     background-color: var(--bg-color); /* Ensure dark background */
+    background-image: 
+        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);
+    background-size: 40px 40px;
+
 }
 
-/* Enhanced Isometric Grid Background */
-body {
-    background-image: 
-        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px), /* Diagonal line at 150 degrees */
-        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);  /* Diagonal line at 30 degrees */
-    background-size: 40px 40px; /* Larger grid for visibility */
-}
 
 /* Button Styling */
 button, .btn {
-    font-family: 'GoodTimes', sans-serif; /* Title font for buttons */
-    font-size: clamp(26px, 2vw, 30px);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    font-family: 'GoodTimes', sans-serif;
+    font-size: clamp(22px, 2vw, 26px);
 }
 
 /* Font application for specific sections */
 h1, h2, h3, .badge{
-    font-family: 'GoodTimes', sans-serif; /* GoodTimes for major headings and badges */
+    font-family: 'GoodTimes', sans-serif;
     font-weight: 500;
 }
 
-/* Override to use Roboto for specific titles */
-.project-card h5, .skills-container .skill-item h4, #skills-technologies .skill-item h4 {
+.project-card h5, .complete-container .skill-item h4, #skills-technologies .skill-item h4 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
 }
 
 /* Sections */
-#hero, #past-projects, #skills-technologies, #gaming-projects, #about-me {
+.section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+    /* background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7)); */
+    color: var(--text-color);
+    border-radius: 10px;
+}
+
+#hero-section, #projects, #combined-section, #about-me {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+#hero-section * {
+    margin: 0;
+    padding: 0;
+}
+
+body, .main-container {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#hero, #projects, #past-projects, #skills-technologies, #gaming-projects, #about-me {
     position: relative;
     overflow: hidden;
     padding: 50px;
     text-align: center;
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
     color: var(--text-color);
     border-radius: 10px;
-    margin-bottom: 30px;
+}
+
+#hero, #past-projects, #skills-technologies, #gaming-projects, #about-me {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
 }
 
 /* Hero Section */
 #hero {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,35 +147,28 @@ h1, h2, h3, .badge{
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
 }
 
 /* Project and Skill Card Styling */
 .skill-item, .project-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
+    position: relative;
+    padding: 20px 15px;
     background-color: var(--secondary-color);
     color: var(--text-color);
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    text-align: center;
     width: 200px;
-    min-height: 180px;
+    min-height: 220px;
     margin: 10px;
     overflow: hidden;
     transition: transform 0.3s;
-}
-
-.skill-item h4, .project-card h5 {
-    flex-grow: 1;
-    margin: 0;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    text-align: center;
 }
 
 /* Uniform carousel titles */
@@ -168,13 +185,12 @@ h1, h2, h3, .badge{
 
 /* Tech Chips Styling */
 .tech-chips, .tech-chips-vertical {
+    margin-top: auto;
+    padding-top: 10px;
     display: flex;
-    gap: 6px;
-    padding-top: 5px;
-    width: 100%;
-    overflow: auto;
-    scrollbar-width: none;
-    cursor: grab;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
 }
 
 .tech-chips::-webkit-scrollbar, .tech-chips-vertical::-webkit-scrollbar {
@@ -208,11 +224,14 @@ h1, h2, h3, .badge{
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-top: 5px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     max-height: 120px;
     overflow-y: auto;
     cursor: grab;
     scrollbar-width: none;
+    margin-top: auto;
+    position: relative;
 }
 
 .tech-chips-vertical.active, .tech-chips.active {
@@ -228,8 +247,8 @@ h1, h2, h3, .badge{
 }
 
 #about-me .profile-image img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
@@ -276,12 +295,6 @@ h1, h2, h3, .badge{
     user-select: none;
 }
 
-body, h1, h2, h3, p, .project-card .card-title, .badge {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
-
 /* Carousel controls */
 .carousel-control-prev,
 .carousel-control-next {
@@ -312,4 +325,277 @@ body, h1, h2, h3, p, .project-card .card-title, .badge {
 
 .card-text{
     font-size: clamp(16px, 2vw, 20px);
+}
+
+/* Side Page Styling */
+.side-page {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 400px;
+    background-color: #282828;
+    color: #ffffff;
+    overflow-y: auto;
+    transition: transform 0.5s ease;
+    z-index: 1000;
+    padding: 20px;
+    display: none;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Slide directions */
+.side-page.left { 
+    left: 0;
+    transform: translateX(-100%);
+}
+.side-page.right {
+    right: 0;
+    transform: translateX(100%);
+}
+
+/* Show the page with an animation */
+.side-page.active {
+    display: block;
+    transform: translateX(0);
+}
+
+/* Close Button Styling */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Customize modal content */
+.modal-content {
+    background-color: #282828; /* Dark background */
+    color: #ffffff;
+}
+
+/* Adjust modal title style */
+.modal-title {
+    font-family: 'GoodTimes', sans-serif; /* Or any custom font */
+    font-size: 0.9em;
+}
+
+/* Style modal body */
+.modal-body {
+    font-size: 0.55em;
+    line-height: 1.6;
+}
+/* Ensure modal content is readable */
+.modal-body p, .modal-body ul, .modal-body h5, .modal-body h6 {
+    margin-bottom: 1em;
+    line-height: 1.1;
+}
+
+.modal-body ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+}
+
+.modal-body h5 {
+    font-weight: 600;
+    color: #ff6584;
+    margin-top: 1em;
+}
+
+.modal-body h6 {
+    font-weight: 500;
+    color: #ffffff;
+    margin-top: 1em;
+}
+
+.modal-dialog.modal-xl {
+    max-width: 90vw; /* Makes the modal wider */
+}
+
+.carousel-content {
+    text-align: center;
+    padding: 10px;
+}
+
+.carousel-content img {
+    max-width: 100%;
+    max-height: 300px; /* Set a fixed height for uniform image size */
+    object-fit: contain; /* Ensure images fit within the space */
+}
+
+.carousel-caption-below {
+    margin-top: 10px;
+}
+
+.carousel-caption-below h5 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.carousel-caption-below p {
+    font-size: 0.9rem;
+    color: #b4b4b4; /* Optional: lighter text color for readability */
+}
+
+.clickable{
+    cursor:pointer;
+}
+
+/* Align chips to the left in modal footer */
+.chip-container {
+    display: flex;
+    gap: 6px;
+    margin-right: auto; /* Pushes chips to the left */
+}
+
+.chip {
+    background-color: #FF6584;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+}
+
+/* Style close button (cross) */
+.modal-header .btn-close {
+    filter: invert(1); /* Makes the close icon white */
+    opacity: 0.8;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+/* CSS to prevent native scrolling */
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Full-page Section Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Uniform styling for each scroll section */
+.section {
+    height: 100vh;
+    display: flex; /* Enables centering */
+    flex-direction: column;
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding doesn’t impact height */
+    text-align: center;
+
+}
+
+section {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Content container within each section */
+.content-container {
+    text-align: center;
+    width: 100%;
+    max-width: 1200px; /* Limit content width */
+    padding: 20px;
+}
+
+/* Up and Down Scroll Buttons */
+#scroll-buttons {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#scroll-buttons button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#scroll-buttons button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.section {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#about-me {
+    max-width:75vw;
+    max-height: 95vh !important;
+    margin: auto;
+    margin-top: 2.5vh !important; 
+    margin-bottom: 2.5vh !important;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.skill-item h4, .project-card h4 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-top: 5px;
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    min-height: 60px;
+}
+
+/* Webkit-based browsers (Chrome, Safari, Edge) */
+.tech-chips-vertical::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tech-chips-vertical::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tech-chips-vertical::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Firefox support */
+.tech-chips-vertical {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }

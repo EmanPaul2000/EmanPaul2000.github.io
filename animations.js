@@ -100,19 +100,21 @@ gsap.from(".upcoming-skills span", {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Initializing particles'); // For debugging
+
     particlesJS('particles-js-hero', {
         particles: {
-            number: { value: 120, density: { enable: true, value_area: 800 } },
+            number: { value: 80, density: { enable: true, value_area: 800 } },
             color: { value: "#ffffff" },
             shape: { type: "circle" },
-            opacity: { value: 0.4, random: false },
+            opacity: { value: 0.5, random: false },
             size: { value: 3, random: true },
             line_linked: {
                 enable: true,
                 distance: 150,
                 color: "#ffffff",
-                opacity: 0.2,
+                opacity: 0.4,
                 width: 1
             },
             move: { enable: true, speed: 2 }
@@ -129,8 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         retina_detect: true
-    });
-    
+    },
     
     particlesJS('particles-js-projects', {
         particles: {
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             move: { enable: true, speed: 2 }
         }
-    });
+    }));
 
     particlesJS('particles-js-skills', {
         particles: {
@@ -165,24 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 width: 1
             },
             move: { enable: true, speed: 2 }
-        }
-    });
-
-    particlesJS('particles-js-gaming', {
-        particles: {
-            number: { value: 60, density: { enable: true, value_area: 800 } },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.18 },
-            size: { value: 1.8 },
-            line_linked: {
-                enable: true,
-                distance: 130,
-                color: "#ffffff",
-                opacity: 0.1,
-                width: 1
-            },
-            move: { enable: true, speed: 1.7 }
         }
     });
 
@@ -205,50 +188,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.querySelectorAll('.tech-chips').forEach(container => {
-    let isDragging = false;
-    let startX, scrollLeft;
+// Scrollify Initialization
+$(document).ready(function () {
+    if ($.scrollify) {
+        $.scrollify({
+            section: ".section",
+            sectionName: false,
+            scrollSpeed: 800,
+            easing: "easeOutExpo",
+            scrollbars: true,
+            before: function (index, sections) {
+                // Enable or disable scroll buttons based on index
+                $('#scroll-up').prop('disabled', index === 0);
+                $('#scroll-down').prop('disabled', index === sections.length - 1);
+            },
+        });
+    }
 
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('no-select');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
+    // Scroll Up Button Event
+    $("#scroll-up").click(function () {
+        $.scrollify.previous();
     });
 
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.classList.remove('no-select');
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        container.scrollLeft = scrollLeft - (x - startX) * 1.5;
-    });
-});
-
-document.querySelectorAll('.tech-chips-vertical').forEach(container => {
-    let isDragging = false;
-    let startY, scrollTop;
-
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('no-select');
-        startY = e.pageY - container.offsetTop;
-        scrollTop = container.scrollTop;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.classList.remove('no-select');
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const y = e.pageY - container.offsetTop;
-        container.scrollTop = scrollTop - (y - startY) * 1.5;
+    // Scroll Down Button Event
+    $("#scroll-down").click(function () {
+        $.scrollify.next();
     });
 });
