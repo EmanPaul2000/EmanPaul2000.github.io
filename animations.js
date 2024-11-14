@@ -1,15 +1,3 @@
-function scrollToProjects() {
-    const projectsSection = document.getElementById("projects");
-    const offset = -120; // Adjust this value as needed for spacing
-
-    const topPosition = projectsSection.getBoundingClientRect().top + window.scrollY + offset;
-
-    window.scrollTo({
-        top: topPosition,
-        behavior: "smooth"
-    });
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const observerOptions = {
         threshold: 0.1
@@ -28,79 +16,76 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(element);
     });
 
+    function animateSkills() {
+        const completedSkills = document.querySelectorAll('.completed-skills span');
+        const upcomingSkills = document.querySelectorAll('.upcoming-skills span');
 
-function animateSkills() {
-    const completedSkills = document.querySelectorAll('.completed-skills span');
-    const upcomingSkills = document.querySelectorAll('.upcoming-skills span');
+        completedSkills.forEach((skill, index) => {
+            setTimeout(() => {
+                skill.style.opacity = '1';
+                skill.style.transform = 'scale(1)';
+            }, index * 100);
+        });
 
-    completedSkills.forEach((skill, index) => {
-        setTimeout(() => {
-            skill.style.opacity = '1';
-            skill.style.transform = 'scale(1)';
-        }, index * 100);
-    });
-
-    upcomingSkills.forEach((skill, index) => {
-        setTimeout(() => {
-            skill.style.opacity = '1';
-            skill.style.transform = 'scale(1)';
-        }, (index + completedSkills.length) * 100);
-    });
-}
-
-window.addEventListener('scroll', () => {
-    const skillsSection = document.querySelector('#skills');
-    const skillsTop = skillsSection.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (skillsTop < windowHeight - 100) {
-        animateSkills();
+        upcomingSkills.forEach((skill, index) => {
+            setTimeout(() => {
+                skill.style.opacity = '1';
+                skill.style.transform = 'scale(1)';
+            }, (index + completedSkills.length) * 100);
+        });
     }
-});
 
-gsap.from(".project-card", {
-    scrollTrigger: ".project-card",
-    opacity: 0,
-    y: 50,
-    duration: 0.6,
-    stagger: 0.2
-});
+    window.addEventListener('scroll', () => {
+        const skillsSection = document.querySelector('#skills');
+        const skillsTop = skillsSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
 
-gsap.from(".badge", {
-    scrollTrigger: ".badge",
-    opacity: 0,
-    y: 30,
-    duration: 0.5,
-    stagger: 0.15
-});
+        if (skillsTop < windowHeight - 100) {
+            animateSkills();
+        }
+    });
 
-gsap.from(".completed-skills span", {
-    scrollTrigger: {
-        trigger: "#skills",
-        start: "top 80%",
-        toggleActions: "play none none none"
-    },
-    opacity: 0,
-    y: 30,
-    duration: 0.5,
-    stagger: 0.1
-});
+    gsap.from(".project-card", {
+        scrollTrigger: ".project-card",
+        opacity: 0,
+        y: 50,
+        duration: 0.6,
+        stagger: 0.2
+    });
 
-gsap.from(".upcoming-skills span", {
-    scrollTrigger: {
-        trigger: "#skills",
-        start: "top 80%",
-        toggleActions: "play none none none"
-    },
-    opacity: 0,
-    y: 30,
-    duration: 0.5,
-    stagger: 0.1
-});
+    gsap.from(".badge", {
+        scrollTrigger: ".badge",
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        stagger: 0.15
+    });
 
+    gsap.from(".completed-skills span", {
+        scrollTrigger: {
+            trigger: "#skills",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        stagger: 0.1
+    });
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('Initializing particles'); // For debugging
+    gsap.from(".upcoming-skills span", {
+        scrollTrigger: {
+            trigger: "#skills",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        stagger: 0.1
+    });
+
+    console.log('Initializing fixed particles ');
 
     particlesJS('particles-js-hero', {
         particles: {
@@ -131,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         retina_detect: true
     },
-    
+
     particlesJS('particles-js-projects', {
         particles: {
             number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -213,5 +198,4 @@ $(document).ready(function () {
     $("#scroll-down").click(function () {
         $.scrollify.next();
     });
-});
 });
