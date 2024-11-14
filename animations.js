@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         element.classList.add("fade-out");
         observer.observe(element);
     });
-});
 
 
 function animateSkills() {
@@ -214,4 +213,5 @@ $(document).ready(function () {
     $("#scroll-down").click(function () {
         $.scrollify.next();
     });
+});
 });

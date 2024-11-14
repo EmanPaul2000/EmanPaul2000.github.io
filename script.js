@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 // JavaScript to calculate age
 const birthDate = new Date("2000-08-01"); // Replace with your birthdate
 const ageElement = document.getElementById("age");
@@ -394,4 +395,5 @@ document.querySelectorAll('.tech-chips-vertical').forEach(container => {
         const y = e.pageY - container.offsetTop;
         container.scrollTop = scrollTop - (y - startY) * 1.5;
     });
+});
 });
