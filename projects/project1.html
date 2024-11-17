@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-md-6 text-justify">
+        <p>This Angular application is a drone registration management system designed to provide users with a secure
+            and efficient way to handle drone registration data. It incorporates role-based access control, where each
+            user—depending on their role (e.g., system administrator, data entry manager, data entry clerk)—has tailored
+            access to specific functionalities. Only authorized users can add, edit, or delete records, ensuring data
+            integrity and protecting sensitive information.</p>
+
+        <h5>User Authentication and Role Management:</h5>
+        <p>Powered by Firebase, users authenticate to gain access to different functionalities based on assigned roles,
+            with role-based UI adjustments for a personalized experience.</p>
+
+        <h5>Drone Registration Management:</h5>
+        <p>Authorized users can add, view, update, or delete drone registrations, complete with input validation to
+            maintain data consistency. Each record includes fields for serial number, brand, model, owner details, and
+            contact information.</p>
+
+        <h5>Data Export Options:</h5>
+        <p>The application enables users to export registration data in PDF or Excel formats, making it easy to archive
+            or share information in accessible, professional formats.</p>
+
+        <h5>Responsive Design and User Interface:</h5>
+        <p>Built with Bootstrap, the interface is fully responsive, ensuring usability across desktops, tablets, and
+            mobile devices. A dynamic background carousel showcases drone images with a dark overlay, enhancing visual
+            appeal without distracting from the main content.</p>
+
+        <h5>Detailed Form Validation and Error Messaging:</h5>
+        <p>Form inputs have robust validation to prevent errors, with immediate feedback for required fields, format
+            checks, and minimum lengths, improving data quality and user experience.</p>
+
+        <p>This system provides a streamlined, visually appealing way to manage drone registrations, balancing user
+            accessibility with secure, role-specific access control. It’s ideal for organizations that need a
+            structured, secure platform for handling drone data efficiently.</p>
+    </div>
+    <div class="col-md-6">
+        <!-- Unique ID for Modal Carousel -->
+        <div id="modalProjectCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/images/DroneRegistrationSystem/IndexScreen.png" class="d-block w-100"
+                        alt="Home Screen">
+                    <div class="carousel-caption-below">
+                        <h5>Home Screen</h5>
+                        <p>This is the drone list view the admin can view with the update and delete buttons too.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/DroneRegistrationSystem/DetailsScreen.png" class="d-block w-100"
+                        alt="Details Screen">
+                    <div class="carousel-caption-below">
+                        <h5>Details Screen</h5>
+                        <p>This page shows the details of a drone entry, it shows both the drone's owner details as well
+                            as the drone details themselves.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/DroneRegistrationSystem/AddScreen.png" class="d-block w-100"
+                        alt="Add Drone Screen">
+                    <div class="carousel-caption-below">
+                        <h5>Add Screen</h5>
+                        <p>This page allows admins, data entry managers and data entry clerks to add new drone listings.
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/DroneRegistrationSystem/UpdateScreen.png" class="d-block w-100"
+                        alt="Update Drone Screen">
+                    <div class="carousel-caption-below">
+                        <h5>Update Screen</h5>
+                        <p>This screenshot shows the update screen, it allows administrators and data entry managers to
+                            update drone listings.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/DroneRegistrationSystem/Register-LoginScreen.png" class="d-block w-100"
+                        alt="Register/Login Screen">
+                    <div class="carousel-caption-below">
+                        <h5>Register & Login Screen</h5>
+                        <p>This page allows users to create accounts and login so that they can use the website.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <iframe src="https://www.youtube.com/embed/5JvwzNgehKo?si=cq3hLOjuAlpPpIrq"
+                        title="Drone Registration System Demo" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="iframe-container">
+                    </iframe>
+                    <div class="carousel-caption-below">
+                        <h5>Website Demonstration</h5>
+                        <p>This demo shows the full use of the website from each of the security roles.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#modalProjectCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#modalProjectCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>

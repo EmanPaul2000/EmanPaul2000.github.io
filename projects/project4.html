@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-6 text-justify">
+        <p>This project is a client-server application for monitoring health metrics from wearable devices. The server operates in a multi-threaded environment, allowing simultaneous connections from multiple clients over TCP, and logs all interactions for historical tracking.</p>
+
+        <h5>Key Features</h5>
+
+        <ul>
+            <li><strong>Multi-Client Support:</strong> Handles multiple client connections concurrently, with each client interaction managed in a separate thread.</li>
+            <li><strong>Health Monitoring:</strong> Clients can request metrics such as temperature, heart rate, and step count. The server responds with real-time data and logs each request.</li>
+            <li><strong>Command-Based System:</strong> Clients send commands (e.g., TEMP, RATE, STEPS), and the server responds accordingly, maintaining counters and logs.</li>
+            <li><strong>Data Analysis:</strong> The client app interprets responses, providing feedback like “Fever” for high temperatures or step goal progress.</li>
+        </ul>
+
+        <h5>Workflow</h5>
+        <p>Clients connect to the server, send commands, and receive responses based on their request. Each interaction is logged for analysis, offering a reliable solution for tracking health trends in IoT applications.</p>
+    </div>
+
+    <div class="col-md-6">
+        <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/ho9mrc4Hyws?si=nYdz4S2Cad2nTD9h"
+            title="Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            class="iframe-container">
+        </iframe>
+        </div>
+    </div>
+</div>

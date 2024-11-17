@@ -1,91 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("fade-in");
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll(".project-card, .skill-item").forEach(element => {
-        element.classList.add("fade-out");
-        observer.observe(element);
-    });
-
-    function animateSkills() {
-        const completedSkills = document.querySelectorAll('.completed-skills span');
-        const upcomingSkills = document.querySelectorAll('.upcoming-skills span');
-
-        completedSkills.forEach((skill, index) => {
-            setTimeout(() => {
-                skill.style.opacity = '1';
-                skill.style.transform = 'scale(1)';
-            }, index * 100);
-        });
-
-        upcomingSkills.forEach((skill, index) => {
-            setTimeout(() => {
-                skill.style.opacity = '1';
-                skill.style.transform = 'scale(1)';
-            }, (index + completedSkills.length) * 100);
-        });
-    }
-
-    window.addEventListener('scroll', () => {
-        const skillsSection = document.querySelector('#skills');
-        const skillsTop = skillsSection.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (skillsTop < windowHeight - 100) {
-            animateSkills();
-        }
-    });
-
-    gsap.from(".project-card", {
-        scrollTrigger: ".project-card",
-        opacity: 0,
-        y: 50,
-        duration: 0.6,
-        stagger: 0.2
-    });
-
-    gsap.from(".badge", {
-        scrollTrigger: ".badge",
-        opacity: 0,
-        y: 30,
-        duration: 0.5,
-        stagger: 0.15
-    });
-
-    gsap.from(".completed-skills span", {
-        scrollTrigger: {
-            trigger: "#skills",
-            start: "top 80%",
-            toggleActions: "play none none none"
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.5,
-        stagger: 0.1
-    });
-
-    gsap.from(".upcoming-skills span", {
-        scrollTrigger: {
-            trigger: "#skills",
-            start: "top 80%",
-            toggleActions: "play none none none"
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.5,
-        stagger: 0.1
-    });
-
-    console.log('Initializing fixed particles ');
 
     particlesJS('particles-js-hero', {
         particles: {
@@ -186,9 +99,34 @@ $(document).ready(function () {
                 $('#scroll-up').prop('disabled', index === 0);
                 $('#scroll-down').prop('disabled', index === sections.length - 1);
             },
+            after: updateScrollifyIndex
         });
+
+        // Restore saved scroll position on page load if it exists
+        const savedIndex = parseInt(localStorage.getItem('scrollifyIndex'), 10);
+        if (!isNaN(savedIndex)) {
+            $.scrollify.instantMove(savedIndex);
+        }
     }
 
+    // Save position periodically
+    setInterval(updateScrollifyIndex, 1000); // Save every 1 second
+
+    // Save position on page unload
+    window.addEventListener("beforeunload", updateScrollifyIndex);
+
+    // Save position when tab becomes inactive
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'hidden') {
+            updateScrollifyIndex();
+        }
+    });
+
+    // Handle window resizing
+    window.addEventListener("resize", debounce(() => {
+        $.scrollify.instantMove(savedIndex);
+    }, 500));
+    
     // Scroll Up Button Event
     $("#scroll-up").click(function () {
         $.scrollify.previous();
@@ -199,3 +137,25 @@ $(document).ready(function () {
         $.scrollify.next();
     });
 });
+
+// Debounce function for resize
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Variable to hold the current Scrollify index
+let savedIndex = 0;
+
+// Function to update and save the current Scrollify index
+function updateScrollifyIndex() {
+    savedIndex = $.scrollify.currentIndex();
+    localStorage.setItem('scrollifyIndex', savedIndex);
+}

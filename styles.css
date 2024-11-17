@@ -1,15 +1,17 @@
-/* Root and Reset */
+/*GENERAL*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 :root {
     --primary-color: #FF6584;
     /* --primary-color: rgb(200, 255, 0); */
     --secondary-color: #282828;
     --bg-color: #121212;
     --text-color: #ffffff;
+    --vh: 1vh;
 }
 
 @font-face {
@@ -26,48 +28,34 @@
     font-style: normal;
 }
 
-html {
-    scroll-behavior: smooth;
-    overflow: hidden;
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* Body Styling */
-body {
+body{
+    background-color: var(--bg-color);
+    background-image: 
+        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);
+    background-size: 40px 40px;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     font-size: clamp(22px, 2vw, 26px);
     line-height: 1.6;
     overflow-x: hidden;
-    background-color: var(--bg-color); /* Ensure dark background */
-    background-image: 
-        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px),
-        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);
-    background-size: 40px 40px;
-
 }
 
-
-/* Button Styling */
-button, .btn {
-    font-family: 'GoodTimes', sans-serif;
-    font-size: clamp(22px, 2vw, 26px);
+.no-select {
+    user-select: none;
 }
 
-/* Font application for specific sections */
-h1, h2, h3, .badge{
-    font-family: 'GoodTimes', sans-serif;
-    font-weight: 500;
-}
-
-.project-card h5, .complete-container .skill-item h4, #skills-technologies .skill-item h4 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-}
-
-/* Sections */
+/*SECTIONS*/
 .section {
-    height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,71 +64,25 @@ h1, h2, h3, .badge{
     margin: 0;
     text-align: center;
     box-sizing: border-box;
-    /* background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7)); */
     color: var(--text-color);
-    border-radius: 10px;
 }
 
-#hero-section, #projects, #combined-section, #about-me {
+.section > * {
+    margin: 0 !important;
     padding: 0;
-    margin: 0;
-    height: 100vh;
+    max-width: 100%;
 }
 
-#hero-section * {
-    margin: 0;
-    padding: 0;
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
-body, .main-container {
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-#hero, #projects, #past-projects, #skills-technologies, #gaming-projects, #about-me {
-    position: relative;
-    overflow: hidden;
-    padding: 50px;
-    text-align: center;
-    color: var(--text-color);
-    border-radius: 10px;
-}
-
-#hero, #past-projects, #skills-technologies, #gaming-projects, #about-me {
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
-}
-
-/* Hero Section */
-#hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#hero h1 {
-    font-size: 3em;
-    text-shadow: 2px 2px #000000;
-}
-
-#hero button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    color: var(--text-color);
-    background-color: var(--primary-color);
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-#hero button:hover {
-    transform: scale(1.1);
-    background-color: #ffffff;
-    color: var(--primary-color);
-}
-
-/* Particle Effect Containers */
 #particles-js-hero, #particles-js-projects, #particles-js-skills, #particles-js-gaming, #particles-js-about {
     position: absolute;
     top: 0;
@@ -151,131 +93,255 @@ body, .main-container {
     pointer-events: none;
 }
 
-/* Project and Skill Card Styling */
-.skill-item, .project-card {
+#hero, #past-projects, #skills-technologies, #about-me {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
     position: relative;
-    padding: 20px 15px;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    width: 200px;
-    min-height: 220px;
-    margin: 10px;
     overflow: hidden;
-    transition: transform 0.3s;
+    padding: 50px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/*TEXT*/
+
+h1, h2, h3, h4, h5, .badge{
+    font-size: clamp(1rem, 1vw, 3rem);
+    font-family: 'GoodTimes', sans-serif; 
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+button, .btn {
+    font-family: 'GoodTimes', sans-serif;
+    font-size: clamp(22px, 2vw, 26px);
+}
+
+p, a{
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif; 
+}
+
+/*INTERACTIVITY*/
+
+#scroll-buttons {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    z-index: 1000;
+}
+
+#scroll-buttons button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#scroll-buttons button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    top: 65%;
+    height: 10%;
+    transform: translateY(-50%);
+    z-index: 500 !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+/*FEATURED PROJECTS*/
+
+#projectCarousel.carousel {
+    width: 90vw;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+
+#projectCarousel.carousel-inner {
+    display: block; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+    height: 100%;
+}
+
+#projectCarousel.carousel-item {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-/* Uniform carousel titles */
-.project-card h5 {
-    font-size: 1.5em;
-    line-height: 1.2em;
-    min-height: 60px;
-    font-family: 'Roboto', sans-serif;
+#projectCarousel.carousel-content img{
+    max-width: 100%;
+    height: 10vh !important;
+    overflow: hidden;
 }
 
-.project-card:hover, .skill-item:hover {
-    transform: translateY(-10px);
+.project-card{
+    background-color: var(--secondary-color);
+    height: 80vh;
+    width: 100%;
+    opacity: 1;
+    z-index: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Tech Chips Styling */
-.tech-chips, .tech-chips-vertical {
+.project-card>img{
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+}
+
+.iframe-container{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 45vw;
+    height: 30vh !important;
+    border: 0;
+    margin: auto !important;
+}
+
+/*CHIPS*/
+
+.tech-chips, 
+.tech-chips-vertical {
     margin-top: auto;
     padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
+    align-items: end;
+    margin-top: 0;
+    margin-bottom: 5%;
 }
 
-.tech-chips::-webkit-scrollbar, .tech-chips-vertical::-webkit-scrollbar {
-    display: none;
+.skill-item > .tech-chips-vertical{
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
 }
 
-/* Horizontal and Vertical Chips Styling */
-.tech-chips span, .tech-chips-vertical span {
+.tech-chips span, 
+.tech-chips-vertical span {
     background-color: var(--primary-color);
     color: white;
     padding: 4px 8px;
     border-radius: 12px;
-    font-size: 0.6em;
+    font-size: clamp(0.5rem, 3vw, 0.8rem);
     white-space: nowrap;
     display: inline-block;
     cursor: grab;
     margin: 2px;
 }
 
-/* Cursor style when dragging */
-.tech-chips span.dragging, .tech-chips-vertical span.dragging {
-    cursor: grabbing;
-    opacity: 0.8;
+/*COMBINED SECTION*/
+
+.completed-skills, 
+.skills-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap !important; 
+    justify-content: flex-start !important;
+    align-items: start !important;
+    overflow-x: auto; 
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    scrollbar-width: thin; /* Firefox - Thin scrollbar */
+    scrollbar-color: #FF6584 rgba(255, 255, 255, 0.1); /* Firefox - Thumb and track colors */
+    scroll-snap-type: none;
 }
 
-/* Vertical Tech Chips */
-.tech-chips-vertical {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    max-height: 120px;
-    overflow-y: auto;
-    cursor: grab;
-    scrollbar-width: none;
-    margin-top: auto;
+.completed-skills::-webkit-scrollbar, 
+.skills-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.completed-skills::-webkit-scrollbar-thumb, 
+.skills-container::-webkit-scrollbar-thumb {
+    background-color: #FF6584;
+    border-radius: 10px;
+}
+
+.completed-skills::-webkit-scrollbar-track, 
+.skills-container::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.skill-item{
+    background-color: var(--secondary-color);
+    z-index: 5;
+    min-width: 150px !important;
+    max-width: 220px !important;
+    height: 30vh;
+    padding: 20px 15px;
+    border-radius: 8px;
     position: relative;
-}
-
-.tech-chips-vertical.active, .tech-chips.active {
-    cursor: grabbing;
-    opacity: 0.9;
-}
-
-/* About Me Section */
-#about-me .about-content {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
 }
 
-#about-me .profile-image img {
-    width: 200px;
-    height: 200px;
+/*ABOUT ME*/
+
+#about-me{
+    width: 80vw;
+    margin: auto;
+}
+
+#about-me img{
+    width: 18vh;
+    height: 18vh;
+
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
 }
 
-#about-me .about-details p {
-    font-size: 0.9em;
+.about-details {
     flex: 1;
     text-align: left;
-    padding-left: 20px;
+    line-height: 2.8;
 }
 
-#about-me .social-links .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 16px;
-    margin-right: 10px;
-    border-radius: 5px;
-    font-size: 1em;
-    color: #ffffff;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.social-links .btn i {
-    margin-right: 8px;
-    font-size: 1.2em;
+.social-links>.btn{
+    width: 75%;
+    color: var(--text-color);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .btn-github {
@@ -290,105 +356,75 @@ body, .main-container {
 .btn-linkedin:hover {
     background-color: #005582;
 }
-
-.no-select {
-    user-select: none;
+.btn-email{
+    background-color: #28A745; 
+}
+.btn-email:hover{
+    background-color: #1E7A33;
+}
+.btn-itchio{
+    background-color: #FF5C5A ;
+}
+.btn-itchio:hover{
+    background-color: #d14a48 ;
 }
 
-/* Carousel controls */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-    top: 50%;
-    transform: translateY(-50%);
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    min-height: 100%;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 2rem;
-    height: 2rem;
+.profile-image-links {
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Featured Projects */
-.project-card {
-    min-height: 800px;
-    max-height: 800px;
+@media (hover: hover) and (pointer: fine) {
+    .clickable {
+        cursor: pointer; 
+        border: 2px solid transparent; 
+        transition: border-color 0.3s ease; 
+    }
+    
+    .clickable:hover {
+        border-color: var(--primary-color);
+    }
+    
+    .clickable:hover.skill-item{
+        transform: translateY(-5px);
+    }
+    
 }
 
-.project-image {
-    max-height: 400px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+/*MODAL*/
 
-.card-text{
-    font-size: clamp(16px, 2vw, 20px);
-}
-
-/* Side Page Styling */
-.side-page {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    width: 400px;
+.modal-content {
     background-color: #282828;
     color: #ffffff;
-    overflow-y: auto;
-    transition: transform 0.5s ease;
-    z-index: 1000;
-    padding: 20px;
-    display: none;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
 }
 
-/* Slide directions */
-.side-page.left { 
-    left: 0;
-    transform: translateX(-100%);
-}
-.side-page.right {
-    right: 0;
-    transform: translateX(100%);
-}
-
-/* Show the page with an animation */
-.side-page.active {
-    display: block;
-    transform: translateX(0);
-}
-
-/* Close Button Styling */
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-/* Customize modal content */
-.modal-content {
-    background-color: #282828; /* Dark background */
-    color: #ffffff;
-}
-
-/* Adjust modal title style */
 .modal-title {
-    font-family: 'GoodTimes', sans-serif; /* Or any custom font */
-    font-size: 0.9em;
+    font-family: 'GoodTimes', sans-serif; 
+    font-size: 3vw;
 }
 
-/* Style modal body */
-.modal-body {
-    font-size: 0.55em;
-    line-height: 1.6;
+.modal{
+    height: 95vh;
 }
-/* Ensure modal content is readable */
+
+.modal-body {
+    flex: 1 1 auto;
+    font-size: clamp(1rem, 2.5vw, 1.25rem); 
+    line-height: 1.6; 
+    overflow-y: auto;
+    height: 70vh;
+}
+
 .modal-body p, .modal-body ul, .modal-body h5, .modal-body h6 {
     margin-bottom: 1em;
     line-height: 1.1;
@@ -412,190 +448,293 @@ body, .main-container {
 }
 
 .modal-dialog.modal-xl {
-    max-width: 90vw; /* Makes the modal wider */
+    max-width: 90vw;
 }
 
-.carousel-content {
-    text-align: center;
-    padding: 10px;
-}
-
-.carousel-content img {
-    max-width: 100%;
-    max-height: 300px; /* Set a fixed height for uniform image size */
-    object-fit: contain; /* Ensure images fit within the space */
-}
-
-.carousel-caption-below {
-    margin-top: 10px;
-}
-
-.carousel-caption-below h5 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.carousel-caption-below p {
-    font-size: 0.9rem;
-    color: #b4b4b4; /* Optional: lighter text color for readability */
-}
-
-.clickable{
-    cursor:pointer;
-}
-
-/* Align chips to the left in modal footer */
-.chip-container {
-    display: flex;
-    gap: 6px;
-    margin-right: auto; /* Pushes chips to the left */
-}
-
-.chip {
-    background-color: #FF6584;
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 0.9em;
-}
-
-/* Style close button (cross) */
-.modal-header .btn-close {
-    filter: invert(1); /* Makes the close icon white */
-    opacity: 0.8;
-}
-
-.modal-header .btn-close:hover {
-    opacity: 1;
-}
-
-/* CSS to prevent native scrolling */
-html, body {
-    overflow: hidden;
-    height: 100%;
-}
-
-/* Full-page Section Styling */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-/* Uniform styling for each scroll section */
-.section {
-    height: 100vh;
-    display: flex; /* Enables centering */
-    flex-direction: column;
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    padding: 0;
-    box-sizing: border-box; /* Ensure padding doesn’t impact height */
-    text-align: center;
-
-}
-
-section {
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Content container within each section */
-.content-container {
-    text-align: center;
-    width: 100%;
-    max-width: 1200px; /* Limit content width */
-    padding: 20px;
-}
-
-/* Up and Down Scroll Buttons */
-#scroll-buttons {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-}
-
-#scroll-buttons button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    margin: 5px 0;
-    padding: 10px;
-    font-size: 1.2em;
-    cursor: pointer;
-}
-
-#scroll-buttons button:disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-.section {
-    opacity: 0;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#about-me {
-    max-width:75vw;
-    max-height: 95vh !important;
+#projectModal .carousel-content img {
+    max-height: 400px; 
+    width: auto; 
+    object-fit: contain;
     margin: auto;
-    margin-top: 2.5vh !important; 
-    margin-bottom: 2.5vh !important;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
 }
 
-.particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    pointer-events: none;
+
+
+/* Mobile Portrait (Small Phones) */
+@media (max-width: 360px) {
+    h1{
+        padding: auto;
+        font-size: 1.2em !important;
+        font-weight: 600 !important;
+    }
+
+    h2{
+        font-size: 0.8em !important;
+    }
+
+    h4{
+        font-size: 0.5em !important;
+    }
+
+    p{
+        font-size: 0.6em !important;
+    }
+
+    .modal-body p{
+        font-size: 0.7em !important;
+        background-color: blue;
+    }
+
+    #past-projects, #skills-technologies{
+        padding: 5px;
+    }
+
+    .skill-item{
+        padding: 10px;
+        min-height: 250px;
+        margin-bottom: 2px;
+    }
+
+    #past-projects > h2,
+    #skills-technologies > h2{
+        margin-bottom: 3px !important;
+    }
+    
+    .skill-item .tech-chips-vertical{
+        padding-top: 0;
+    }
+
+    #about-me{
+        width: 100vw !important;
+        padding: 20px !important;
+    }
+
+    .about-details{
+        line-height: 1.2 !important;
+    }
+
+    .social-links > .btn{
+        font-size: 0.6em !important;
+    }
 }
 
-.skill-item h4, .project-card h4 {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    padding-top: 5px;
-    width: 100%;
-    text-align: center;
-    flex-shrink: 0;
-    min-height: 60px;
+/* Small Phones like iPhone SE */
+@media (max-width: 375px) {
+    /* Styles for small phones (375 x 667) */
+    h1{
+        padding: auto;
+        font-size: 1.2em !important;
+        font-weight: 600 !important;
+    }
+
+    h2{
+        font-size: 0.8em !important;
+    }
+
+    h4{
+        font-size: 0.5em !important;
+    }
+
+    p{
+        font-size: 0.6em !important;
+    }
+
+    #past-projects, #skills-technologies{
+        padding: 5px;
+    }
+
+    .skill-item{
+        padding: 10px;
+        min-height: 260px;
+        margin-bottom: 2px;
+    }
+
+    #past-projects > h2,
+    #skills-technologies > h2{
+        margin-bottom: 3px !important;
+    }
+    
+    .skill-item .tech-chips-vertical{
+        padding-top: 0;
+    }
+
+    #about-me{
+        width: 100vw !important;
+        padding: 20px !important;
+    }
+
+    .about-details{
+        line-height: 1.2 !important;
+    }
+
+    .social-links > .btn{
+        font-size: 0.6em !important;
+    }
 }
 
-/* Webkit-based browsers (Chrome, Safari, Edge) */
-.tech-chips-vertical::-webkit-scrollbar {
-    width: 8px;
+/* Modern Phones (Pixel, iPhone 12/13) */
+@media (max-width: 393px) {
+    /* Styles for medium phones (393 x 851) */
+    h1{
+        padding: auto;
+        font-size: 1.2em !important;
+        font-weight: 600 !important;
+    }
+
+    h2{
+        font-size: 0.8em !important;
+    }
+
+    h4{
+        font-size: 0.5em !important;
+    }
+
+    p{
+        font-size: 0.5em !important;
+    }
+    #past-projects, #skills-technologies{
+        padding: 5px;
+    }
+    .skill-item{
+        min-width: 160px !important;
+        padding: 10px;
+        min-height: 300px;
+        margin-bottom: 2px;
+    }
+    #past-projects > h2,
+    #skills-technologies > h2{
+        margin-bottom: 3px !important;
+    }
+    
+    .skill-item .tech-chips-vertical{
+        padding-top: 0;
+    }
+    #about-me{
+        width: 100vw !important;
+        margin-left: 0 !important;   
+        padding: 20px !important;
+    }
+
+    .about-details{
+        line-height: 1.5 !important;
+    }
+
+    .social-links > .btn{
+        font-size: 0.6em !important;
+    }
 }
 
-.tech-chips-vertical::-webkit-scrollbar-track {
-    background: transparent;
+/* Small Tablets */
+@media (max-width: 600px) {
+    /* Styles for small tablets (600 x 1024) */
+    #past-projects, #skills-technologies{
+        padding: 5px;
+    }
+    .skill-item{
+        min-width: 160px !important;
+        padding: 10px;
+        min-height: 300px;
+        margin-bottom: 2px;
+    }
+    .skill-item > h4{
+        font-size: 0.5em !important;
+        margin-bottom : 3px !important;
+    }
+    
+    .skill-item .tech-chips-vertical{
+        padding-top: 0;
+    }
+
+    #about-me{
+        width: 100vw !important;
+        margin: 0 !important; 
+    }
+
+    .about-content p{
+        line-height: 1;
+        font-size: 0.6em;
+    }
 }
 
-.tech-chips-vertical::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+/* iPad Mini and Similar Tablets */
+@media (max-width: 768px) {
+    /* Styles for medium tablets (768 x 1024) */
 }
 
-/* Firefox support */
-.tech-chips-vertical {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+/* Large Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    /* Styles for large tablets or small laptops (1024 x 1366) */
+}
+
+/* Small Laptops */
+@media (max-width: 1366px) {
+    /* Styles for small laptops (1366 x 768) */
+    #past-projects{
+        padding: 5px !important;
+        margin-bottom: 5px !important;
+    }
+    #skills-technologies{
+        padding: 5px !important;
+        margin-bottom: 15px !important;
+
+    }
+    .skill-item{
+        min-height: 270px;
+    }
+
+    #modalCloseBtn{
+        margin-bottom: 40px;
+    }
+
+    .modal-content{
+        height: 97vh;
+    }
+
+    .modal-footer{
+        padding-bottom: 10px;
+    }
+}
+
+/* Full HD Displays */
+@media (max-width: 1920px) {
+    /* Styles for Full HD monitors (1920 x 1080) */
+    #modalCloseBtn {
+        margin-bottom: 60px;
+    }
+
+    .modal-content {
+        height: 97vh;
+    }
+
+    .modal-footer {
+        padding-bottom: 10px;
+    }
+
+    .skill-item {
+        width: 25vw;
+        margin: 0; 
+    }
+
+    .skills-container,
+    .completed-skills {
+        display: flex !important; 
+        flex-wrap: wrap !important; 
+        justify-content: center !important;
+        align-items: center;
+        gap: 20px;
+        width: 100%; 
+        margin: auto;
+    }
+
+    .skill-item {
+        flex: 1 1 auto; 
+        max-width: 300px; 
+        min-width: 250px;
+        margin: 10px;
+        text-align: center; 
+    }
+
+    .skill-item > h4{
+        font-size: 0.7em !important;
+    }
 }

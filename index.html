@@ -24,9 +24,10 @@
         <button id="scroll-down" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></button>
     </div>
     <div id="fullpage">
+
         <!--Hero with Title-->
         <header id="hero" class="section">
-            <div class="content-container">
+            <div class="container-fluid">
                 <div id="particles-js-hero" class="particles-container"></div>
                 <h1 class="display-4">Welcome to My Digital Playground</h1>
                 <p class="lead">Software Engineer • Data Scientist • Game Programmer</p>
@@ -36,11 +37,10 @@
 
 
         <!-- Project Showcase Carousel with Bootstrap -->
-        <section id="projects" class="particle-section section my-5">
-            <div class="content-container">
+        <section id="projects" class="section my-5">
+            <div class="container-fluid">
                 <h2 class="text-center mb-4">Featured Projects</h2>
-
-                <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="30000">
+                <div id="projectCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="30000" data-bs-touch="true">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active"></li>
@@ -51,9 +51,9 @@
                     <div class="carousel-inner">
                         <!-- Project 1 -->
                         <div class="carousel-item clickable active" onclick="openProjectModal(1)">
-                            <div class="card project-card shadow-sm mx-auto" style="width: 80%;">
+                            <div class="card project-card shadow-sm">
                                 <img src="assets/images/DroneRegistrationSystem/IndexScreen.png"
-                                    class="card-img-top project-image" alt="Project Screenshot 1">
+                                    class="card-img-top project-image img-fluid" alt="Project Screenshot 1" loading="lazy">
                                 <div class="card-body d-flex flex-column">
                                     <h2 class="card-title">Drone Registration System</h2>
                                     <p class="card-text text-justify">A drone registration system that allows users to view
@@ -75,9 +75,9 @@
                         </div>
                         <!-- Project 2 -->
                         <div class="carousel-item clickable" onclick="openProjectModal(2)">
-                            <div class="card project-card shadow-sm mx-auto" style="width: 80%;">
+                            <div class="card project-card shadow-sm">
                                 <img src="assets/images/FishingDashboard/Screenshot1-Overview.png"
-                                    class="card-img-top project-image" alt="Project Screenshot 2">
+                                    class="card-img-top project-image img-fluid" alt="Project Screenshot 2" loading="lazy">
                                 <div class="card-body d-flex flex-column">
                                     <h2 class="card-title">Fishing Dashboard</h2>
                                     <p class="card-text text-justify">This Power BI dashboard provides an in-depth analysis
@@ -96,9 +96,9 @@
                         </div>
                         <!-- Project 3 -->
                         <div class="carousel-item clickable" onclick="openProjectModal(3)">
-                            <div class="card project-card shadow-sm mx-auto" style="width: 80%;">
-                                <img src="assets/images/GeekInvestments/Trades Page.png" class="card-img-top project-image"
-                                    alt="Project Screenshot 3">
+                            <div class="card project-card shadow-sm">
+                                <img src="assets/images/GeekInvestments/Trades Page.png" class="card-img-top img-fluid project-image"
+                                    alt="Project Screenshot 3" loading="lazy">
                                 <div class="card-body d-flex flex-column">
                                     <h2 class="card-title">Geek Investments</h2>
                                     <p class="card-text text-justify">Geek Investments is a simulated platform for tracking
@@ -133,177 +133,184 @@
             </div>
         </section>
 
-        <section class="section" id="combined-section">
-            <div class="content-container">
-            <!-- Past Projects Section -->
-            <div id="past-projects" class="particle-section container my-5">
-                <div id="particles-js-projects"></div>
-                <h2 class="text-center mb-4">Past Projects</h2>
-                <div class="completed-skills d-flex flex-wrap justify-content-center">
-                    <div class="skill-item clickable" onclick="openProjectModal(1)">
-                        <h4>Drone Registration System</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>Angular</span>
-                            <span>TypeScript</span>
-                            <span>Firebase</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Bootstrap</span>
+        <section class="section my-5" id="combined-section">
+            <div class="container-fluid">
+                <!-- Past Projects Section -->
+                <div id="past-projects" class="container my-1">
+                    <div id="particles-js-projects"></div>
+                    <h2 class="text-center mb-4">Past Projects</h2>
+                    <div class="completed-skills d-flex flex-wrap justify-content-center">
+                        <div class="skill-item mx-2 clickable" onclick="openProjectModal(1)">
+                            <h4>Drone Registration System</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>Angular</span>
+                                <span>TypeScript</span>
+                                <span>Firebase</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>Bootstrap</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-item clickable" onclick="openProjectModal(2)">
-                        <h4>Fishing Dashboard</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>Power BI</span>
-                            <span>SQL</span>
-                            <span>DAX</span>
+                        <div class="skill-item mx-2 clickable" onclick="openProjectModal(2)">
+                            <h4>Fishing Dashboard</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>Power BI</span>
+                                <span>SQL</span>
+                                <span>DAX</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-item clickable" onclick="openProjectModal(3)">
-                        <h4>Geek Investments</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>PHP/CakePHP</span>
-                            <span>MySQL</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Bootstrap</span>
+                        <div class="skill-item mx-2 clickable" onclick="openProjectModal(3)">
+                            <h4>Geek Investments</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>PHP/CakePHP</span>
+                                <span>MySQL</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>Bootstrap</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-item clickable" data-aos="flip-left" onclick="openProjectModal(4)">
-                        <h4>Client Health Tracker</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>C</span>
-                            <span>Makefiles</span>
-                            <span>TCP/IP</span>
-                            <span>Sockets</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills & Technologies Section -->
-            <div id="skills-technologies" class="particle-section container my-5">
-                <div id="particles-js-skills"></div>
-                <h2 class="text-center mb-4">Skills & Technologies</h2>
-                <div class="skills-container d-flex flex-wrap justify-content-center">
-                    <div class="skill-item">
-                        <h4>Programming Languages</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>C#</span>
-                            <span>Python</span>
-                            <span>Java</span>
-                            <span>C</span>
-                            <span>C++</span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <h4>Web Development</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Jquery</span>
-                            <span>Bootstrap</span>
-                            <span>Angular</span>
-                            <span>TypeScript</span>
-                            <span>PHP/ CakePHP</span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <h4>Tools & Technologies</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>Visual Studio</span>
-                            <span>Visual Studio Code</span>
-                            <span>Pycharm</span>
-                            <span>Eclipse</span>
-                            <span>Unity</span>
-                            <span>Docker</span>
-                            <span>Postman</span>
-                            <span>GitHub</span>
-                            <span>rabbitMQ</span>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <h4>Database & Data Handling</h4>
-                        <div class="tech-chips-vertical scroll-hint">
-                            <span>SQL</span>
-                            <span>MS SQL</span>
-                            <span>MySQL</span>
-                            <span>Power BI</span>
-                            <span>Splunk</span>
+                        <div class="skill-item mx-2 clickable" data-aos="flip-left" onclick="openProjectModal(4)">
+                            <h4>Client Health Tracker</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>C</span>
+                                <span>Makefiles</span>
+                                <span>TCP/IP</span>
+                                <span>Sockets</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <!-- Skills & Technologies Section -->
+                <div id="skills-technologies" class="container my-1">
+                    <div id="particles-js-skills"></div>
+                    <h2 class="text-center mb-4">Skills & Technologies</h2>
+                    <div class="skills-container d-flex flex-wrap justify-content-center">
+                        <div class="skill-item mx-2">
+                            <h4>Programming Languages</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>C#</span>
+                                <span>Python</span>
+                                <span>Java</span>
+                                <span>C</span>
+                                <span>C++</span>
+                            </div>
+                        </div>
+                        <div class="skill-item mx-2">
+                            <h4>Web Development</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>Jquery</span>
+                                <span>Bootstrap</span>
+                                <span>Angular</span>
+                                <span>TypeScript</span>
+                                <span>PHP/ CakePHP</span>
+                            </div>
+                        </div>
+                        <div class="skill-item mx-2">
+                            <h4>Tools & Technologies</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>Visual Studio Code</span>
+                                <span>Pycharm</span>
+                                <span>Visual Studio</span>
+                                <span>Eclipse</span>
+                                <span>Unity</span>
+                                <span>Docker</span>
+                                <span>Postman</span>
+                                <span>GitHub</span>
+                                <span>rabbitMQ</span>
+                            </div>
+                        </div>
+                        <div class="skill-item mx-2">
+                            <h4>Database & Data Handling</h4>
+                            <div class="tech-chips-vertical scroll-hint">
+                                <span>SQL</span>
+                                <span>MS SQL</span>
+                                <span>MySQL</span>
+                                <span>Power BI</span>
+                                <span>Splunk</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-        <section id="about-me" class="particle-section section my-5">
-            <div class="content-container">
-            <div id="particles-js-about"></div>
-            <h2 class="text-center mb-4">About Me</h2>
-            <div class="about-content d-flex align-items-center">
-                <!-- Profile Image -->
-                <div class="profile-image">
-                    <img src="assets/images/MyPhoto.jpg" alt="Eman Paul Abela">
-                </div>
-
-                <!-- About Me Details -->
-                <div class="about-details">
-                    <p><strong>Name :</strong> Eman Paul Abela</p>
-                    <p><strong>Email :</strong> <a
-                            href="mailto:emanpaulabela2000@gmail.com">emanpaulabela2000@gmail.com</a></p>
-                    <p><strong>Age :</strong> <span id="age"></span></p>
-                    <p><strong>Bio :</strong> A passionate software engineer and game developer with a strong interest
-                        in AI, distributed systems, and creating immersive digital experiences.</p>
-                    <p><strong>Skills :</strong> C#, Python, SQL, Unity, Angular, PHP / CakePHP</p>
-                    <p><strong>Interests :</strong> Technology, Video Games, Photography, Travelling, History</p>
-                    <p><strong>Location :</strong> Unzenberg, Germany</p>
-                    <p><strong>Fun Fact :</strong> I have now been programming for over 10 years!</p>
-
-                    <!-- Social Links -->
-                    <div class="social-links mt-3">
-                        <a href="https://github.com/EmanPaul2000" target="_blank" class="btn btn-github">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/emanpaulabela/" target="_blank" class="btn btn-linkedin">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
+        <section id="about-me" class="section my-5">
+            <div class="container-fluid">
+                <div id="particles-js-about"></div>
+                <h2 class="text-center mb-4">About Me</h2>
+                <div class="about-content d-flex justify-content-between">
+                    <!-- About Me Details -->
+                    <div class="about-details text-start">
+                        <p><strong>Name <i class="fas fa-user"></i> :</strong> Eman Paul Abela</p>
+                        <p>
+                            <strong>Age <i class="fas fa-hourglass"></i> :</strong> 
+                            <span id="age" title="Yes, this was updated using today's date which is - [DATEHERE] :)"></span>
+                        </p>
+                        <p><strong>Bio <i class="fas fa-dna"></i> :</strong> A passionate software engineer and game developer with a strong interest
+                            in AI, distributed systems, and creating immersive digital experiences.</p>
+                        <p><strong>Skills <i class="fas fa-code"></i> :</strong> C#, Python, SQL, Unity, Angular, PHP / CakePHP</p>
+                        <p><strong>Interests <i class="fas fa-puzzle-piece"></i> :</strong> Technology, Video Games, Photography, Travelling, History</p>
+                        <p><strong>Location <i class="fas fa-map-marker-alt"></i> :</strong> Unzenberg, Germany</p>
+                        <p><strong>Fun Fact <i class="fas fa-lightbulb"></i> :</strong> I have now been programming for over 10 years!</p>
+                    </div>
+        
+                    <!-- Profile Image and Social Links -->
+                    <div class="profile-image-links d-flex flex-column align-items-center">
+                        <!-- Profile Image -->
+                        <div id="wrap" class="profile-image img-wrap">
+                            <img src="assets/images/MyPhoto.jpg" alt="Eman Paul Abela">
+                        </div>
+                        <!-- Social Links -->
+                        <div class="social-links d-flex flex-column">
+                            <h5>Find me on:</h5>
+                            <a href="https://github.com/EmanPaul2000" target="_blank" class="btn btn-github mb-2">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/emanpaulabela/" target="_blank" class="btn btn-linkedin mb-2">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="mailto:emanpaulabela2000@gmail.com" class="btn btn-email mb-2">
+                                <i class="fas fa-envelope"></i> Email
+                            </a>
+                            <a href="https://emanpaul2000.itch.io" target="_blank" class="btn btn-itchio">
+                                <i class="fa-solid fa-gamepad"></i> itch.io
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr>
-            <h2 class="text-center mb-4">Gaming Projects</h2>
-            <p class="text-center mb-4">I also make games in my spare time. Explore my released games on <a
-                    href="https://emanpaul2000.itch.io" target="_blank">itch.io</a>!</p>
-
-            <div class="itchio-preview text-center">
-                <a href="https://emanpaul2000.itch.io" target="_blank" class="btn btn-primary">Visit My itch.io Page</a>
-            </div>
-            </div>
         </section>
+        
+        
 
         <!-- Project Details Modal -->
         <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="projectModalLabel"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" id="modalContent">
-                        <!-- Content dynamically added here -->
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12" id="modalContent">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer" id="modalFooter">
-                        <!-- Chips dynamically added here -->
                     </div>
                 </div>
             </div>
         </div>
-
+        
     </div>
 
     <!-- Additional libraries and plugins -->
@@ -311,6 +318,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-elevatezoom@3.0.8/jquery.elevatezoom.min.js"></script>
 
     <!-- Main script with Scrollify initialization -->
     <script src="script.js"></script>
