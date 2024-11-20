@@ -57,13 +57,21 @@ window.openProjectModal = async function (projectId) {
         modalContent.innerHTML = projectHTML;
 
         const chipsHTML = projectData[projectId].chips
-            .map(chip => `<span class="chip">${chip}</span>`)
+            .map(chip => `<span class="badge text-light fw-normal fs-7 me-1 mb-1">${chip}</span>`)
             .join("");
-        modalFooter.innerHTML = `
-            <div class="tech-chips">${chipsHTML}</div>
-            <button type="button" class="btn btn-secondary" id="modalCloseBtn" data-bs-dismiss="modal">Close</button>
-        `;
 
+            modalFooter.innerHTML = `
+            <div class="row w-100 align-items-start">
+                <div class="col-12 tech-chips-container">
+                    <div class="tech-chips d-flex flex-wrap justify-content-start">
+                        ${chipsHTML}
+                    </div>
+                </div>
+                <div class="col-12 text-end mt-2">
+                    <button type="button" class="btn btn-secondary" id="modalCloseBtn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>`;
+                
         const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
         projectModal.show();
     } catch (error) {
@@ -71,104 +79,6 @@ window.openProjectModal = async function (projectId) {
         modalContent.innerHTML = `<p>Error loading project. Please try again later.</p>`;
     }
 };
-
-
-// ScrollMagic Controller
-const controller = new ScrollMagic.Controller();
-
-// Add ScrollMagic scenes to animate each section
-document.querySelectorAll(".section").forEach((section) => {
-    // Create a ScrollMagic scene for each section
-    new ScrollMagic.Scene({
-        triggerElement: section,  // Start the animation when the section enters the viewport
-        triggerHook: 0.8,         // Trigger when the section is 80% into the viewport
-        reverse: false            // Animate only once
-    })
-    .setClassToggle(section, "visible") // Add class to animate section when in view
-    .addTo(controller);
-});
-
-document.querySelectorAll('.tech-chips').forEach(container => {
-    let isDragging = false;
-    let startX, scrollLeft;
-
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('no-select');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.classList.remove('no-select');
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        container.scrollLeft = scrollLeft - (x - startX) * 1.5;
-    });
-});
-
-document.querySelectorAll('.tech-chips-vertical').forEach(container => {
-
-    
-    let isDragging = false;
-    let startY, scrollTop;
-
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('no-select');
-        startY = e.pageY - container.offsetTop;
-        scrollTop = container.scrollTop;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.classList.remove('no-select');
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const y = e.pageY - container.offsetTop;
-        container.scrollTop = scrollTop - (y - startY) * 1.5;
-    });
-});
-
-document.querySelectorAll('.completed-skills, .skills-container').forEach(container => {
-    
-    let isDragging = false;
-    let startX, scrollLeft;
-
-    container.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('no-select');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        container.classList.remove('no-select');
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 1.5; // Adjust multiplier for speed
-        container.scrollLeft = scrollLeft - walk;
-        
-        // Add buffer to ensure full scroll to the last card
-        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 20) {
-            container.scrollLeft = container.scrollWidth - container.clientWidth;
-        }
-    });
-});
 
 
 });
@@ -207,13 +117,122 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// $(document).ready(function () {
-//     $('.modal-inner img').each(function () {
-//         $(this).elevateZoom({
-//             zoomType: "lens", // Lens zoom type
-//             lensShape: "round", // Round lens
-//             lensSize: 150, // Lens size
-//             scrollZoom: true // Enable scroll-to-zoom
-//         });
-//     });
-// });
+let tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+let firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let player; 
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-video', {
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerStateChange(event) {
+    const carousel = document.querySelector('#modalProjectCarousel');
+    if (event.data === YT.PlayerState.PLAYING) {
+        bootstrap.Carousel.getInstance(carousel).pause();
+    } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        bootstrap.Carousel.getInstance(carousel).cycle();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all carousels
+    const carousels = document.querySelectorAll(".carousel-container");
+
+    carousels.forEach((carousel, index) => {
+        const track = carousel.querySelector(".carousel-track");
+        const items = Array.from(track.children);
+        const prevBtn = carousel.querySelector(".carousel-control-prev");
+        const nextBtn = carousel.querySelector(".carousel-control-next");
+
+        //let activeIndex = Math.floor(items.length / 2);
+        let activeIndex = 0;
+        
+        const updateCarousel = () => {
+            const trackWidth = track.offsetWidth;
+            const itemWidth = items[0].offsetWidth;
+            const offset = (trackWidth / 2) - (itemWidth / 2) - (activeIndex * itemWidth);
+
+            // Move the track
+            track.style.transform = `translateX(${offset}px)`;
+
+            // Update active state
+            items.forEach((item, itemIndex) => {
+                item.classList.toggle("active", itemIndex === activeIndex);
+            });
+        };
+
+        const moveNext = () => {
+            activeIndex = (activeIndex + 1) % items.length;
+            updateCarousel();
+        };
+
+        const movePrev = () => {
+            activeIndex = (activeIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        };
+
+        // Add event listeners
+        nextBtn.addEventListener("click", moveNext);
+        prevBtn.addEventListener("click", movePrev);
+
+        // Initialize the carousel
+        updateCarousel();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById('projectModal');
+
+    // Variable to hold the current Scrollify index
+    let savedIndex = 0;
+
+    // Function to save the current Scrollify index
+    function saveScrollifyIndex() {
+        if ($.scrollify && $.scrollify.currentIndex() !== undefined) {
+            savedIndex = $.scrollify.currentIndex();
+        }
+    }
+
+    // Event Listener: Save Scrollify index and manage scroll behavior when modal opens
+    modal.addEventListener('show.bs.modal', () => {
+        if ($.scrollify) {
+            saveScrollifyIndex(); // Save the current index
+            $.scrollify.disable(); // Disable Scrollify
+        }
+        // Prevent background scrolling and hide scrollbar
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = `${getScrollbarWidth()}px`; // Adjust for scrollbar width
+    });
+
+    // Event Listener: Restore Scrollify index and reset scroll behavior when modal closes
+    modal.addEventListener('hidden.bs.modal', () => {
+        if ($.scrollify) {
+            $.scrollify.enable(); // Enable Scrollify
+            $.scrollify.instantMove(savedIndex); // Move back to the saved position
+        }
+        // Restore body scrolling and scrollbar
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    });
+
+    // Utility to calculate scrollbar width
+    function getScrollbarWidth() {
+        const scrollDiv = document.createElement('div');
+        scrollDiv.style.visibility = 'hidden';
+        scrollDiv.style.overflow = 'scroll'; // Force scrollbar
+        scrollDiv.style.width = '50px';
+        scrollDiv.style.height = '50px';
+        document.body.appendChild(scrollDiv);
+
+        const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        document.body.removeChild(scrollDiv);
+        return scrollbarWidth;
+    }
+});

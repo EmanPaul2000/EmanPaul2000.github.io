@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Scrollify Initialization
 $(document).ready(function () {
     if ($.scrollify) {
         $.scrollify({
@@ -116,7 +115,7 @@ $(document).ready(function () {
     window.addEventListener("beforeunload", updateScrollifyIndex);
 
     // Save position when tab becomes inactive
-    document.addEventListener("visibilitychange", function() {
+    document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === 'hidden') {
             updateScrollifyIndex();
         }
@@ -126,7 +125,7 @@ $(document).ready(function () {
     window.addEventListener("resize", debounce(() => {
         $.scrollify.instantMove(savedIndex);
     }, 500));
-    
+
     // Scroll Up Button Event
     $("#scroll-up").click(function () {
         $.scrollify.previous();
@@ -136,12 +135,26 @@ $(document).ready(function () {
     $("#scroll-down").click(function () {
         $.scrollify.next();
     });
+
+    // Pause Scrollify when the modal is opened
+    $('.modal').on('show.bs.modal', function () {
+        savedIndex = $.scrollify.currentIndex(); // Save the current index
+        $.scrollify.disable(); // Disable Scrollify
+        $('body').css('overflow', 'hidden'); // Prevent background scroll
+    });
+
+    // Resume Scrollify when the modal is closed
+    $('.modal').on('hidden.bs.modal', function () {
+        $.scrollify.enable(); // Enable Scrollify
+        $.scrollify.instantMove(savedIndex); // Return to the saved position
+        $('body').css('overflow', 'auto'); // Restore body scrolling
+    });
 });
 
 // Debounce function for resize
 function debounce(func, wait) {
     let timeout;
-    return function(...args) {
+    return function (...args) {
         const later = () => {
             clearTimeout(timeout);
             func(...args);
@@ -156,6 +169,9 @@ let savedIndex = 0;
 
 // Function to update and save the current Scrollify index
 function updateScrollifyIndex() {
-    savedIndex = $.scrollify.currentIndex();
-    localStorage.setItem('scrollifyIndex', savedIndex);
+    if ($.scrollify.currentIndex() !== undefined) {
+        savedIndex = $.scrollify.currentIndex();
+        localStorage.setItem('scrollifyIndex', savedIndex);
+    }
 }
+

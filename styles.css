@@ -44,9 +44,9 @@ body{
     background-size: 40px 40px;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(22px, 2vw, 26px);
     line-height: 1.6;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .no-select {
@@ -104,21 +104,15 @@ body{
 
 /*TEXT*/
 
-h1, h2, h3, h4, h5, .badge{
-    font-size: clamp(1rem, 1vw, 3rem);
+.h1, .h2, .h3, .h4, .h5, .h6, .badge{
     font-family: 'GoodTimes', sans-serif; 
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
 }
 
 button, .btn {
     font-family: 'GoodTimes', sans-serif;
-    font-size: clamp(22px, 2vw, 26px);
 }
 
 p, a{
-    font-size: 1rem;
     font-family: 'Roboto', sans-serif; 
 }
 
@@ -140,7 +134,6 @@ p, a{
     border: none;
     margin: 5px 0;
     padding: 10px;
-    font-size: 1.2rem;
     cursor: pointer;
 }
 
@@ -191,6 +184,10 @@ p, a{
     overflow: hidden;
 }
 
+#projectCarousel .carousel-item.active:hover{
+    border: var(--primary-color) solid 2px;
+}
+
 #projectCarousel.carousel-content img{
     max-width: 100%;
     height: 10vh !important;
@@ -209,6 +206,8 @@ p, a{
     align-items: center;
     justify-content: center;
 }
+
+
 
 .project-card>img{
     width: 100vw;
@@ -252,10 +251,8 @@ p, a{
     color: white;
     padding: 4px 8px;
     border-radius: 12px;
-    font-size: clamp(0.5rem, 3vw, 0.8rem);
     white-space: nowrap;
     display: inline-block;
-    cursor: grab;
     margin: 2px;
 }
 
@@ -277,28 +274,12 @@ p, a{
     scroll-snap-type: none;
 }
 
-.completed-skills::-webkit-scrollbar, 
-.skills-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.completed-skills::-webkit-scrollbar-thumb, 
-.skills-container::-webkit-scrollbar-thumb {
-    background-color: #FF6584;
-    border-radius: 10px;
-}
-
-.completed-skills::-webkit-scrollbar-track, 
-.skills-container::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
 .skill-item{
     background-color: var(--secondary-color);
     z-index: 5;
     min-width: 150px !important;
     max-width: 220px !important;
-    height: 30vh;
+    /* height: 30vh; */
     padding: 20px 15px;
     border-radius: 8px;
     position: relative;
@@ -311,6 +292,87 @@ p, a{
     margin-right: 1vw;
     margin-bottom: 1vh;
     margin-top: 1vh;
+}
+
+#past-projects .carousel-container,
+#skills-technologies .carousel-container{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+#past-projects .carousel-track,
+#skills-technologies .carousel-track {
+    display: flex;
+    gap: 1rem;
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+
+#prevBtn1, #prevBtn2, #nextBtn1, #nextBtn2{
+    background-color: #333333e5;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#past-projects .skill-item,
+#skills-technologies .skill-item{
+    flex: 0 0 auto;
+    width: 28vw; /* Adjust the width as needed */
+    transition: transform 0.3s ease;
+}
+#past-projects .skill-item.active,
+#skills-technologies .skill-item.active {
+    transform: scale(1.1);
+    border: var(--primary-color) solid 2px;
+}
+
+#past-projects .skill-item.active:hover{
+    border: white solid 2px;
+    transform: translateY(5px);
+    transform: scale(1.1);
+}
+
+#past-projects .skill-item.active .tech-chips-vertical,
+#skills-technologies .skill-item.active .tech-chips-vertical {
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Specific Containers */
+#past-projects .skill-item.active .tech-chips-vertical,
+#skills-technologies .skill-item.active .tech-chips-vertical {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--primary-color) #262626; /* Thumb and Track colors */
+}
+
+/* Webkit Browsers */
+#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar,
+#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar {
+    width: 8px; /* Adjust for desired scrollbar thickness */
+}
+
+#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-track,
+#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-track {
+    background: #262626;
+    border-radius: 8px;
+}
+
+#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb,
+#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 8px;
+}
+
+#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb:hover,
+#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb:hover {
+    background: #9b3d50;
+}
+
+
+.badge {
+    padding: 0.5rem 1rem; /* Adjust padding for better scaling */
+    border-radius: 0.5rem; /* Make badges rounded */
+    background-color: #6c757d; /* Adjust background for consistency */
 }
 
 /*ABOUT ME*/
@@ -336,7 +398,7 @@ p, a{
     line-height: 2.8;
 }
 
-.social-links>.btn{
+.social-links .btn{
     width: 75%;
     color: var(--text-color);
     width: 100%;
@@ -389,16 +451,7 @@ p, a{
         cursor: pointer; 
         border: 2px solid transparent; 
         transition: border-color 0.3s ease; 
-    }
-    
-    .clickable:hover {
-        border-color: var(--primary-color);
-    }
-    
-    .clickable:hover.skill-item{
-        transform: translateY(-5px);
-    }
-    
+    }    
 }
 
 /*MODAL*/
@@ -410,23 +463,19 @@ p, a{
 
 .modal-title {
     font-family: 'GoodTimes', sans-serif; 
-    font-size: 3vw;
 }
 
 .modal{
-    height: 95vh;
+    height: 100vh;
 }
 
 .modal-body {
     flex: 1 1 auto;
-    font-size: clamp(1rem, 2.5vw, 1.25rem); 
-    line-height: 1.6; 
     overflow-y: auto;
-    height: 70vh;
+    height: 65vh;
 }
 
-.modal-body p, .modal-body ul, .modal-body h5, .modal-body h6 {
-    margin-bottom: 1em;
+.modal-body p, .modal-body ul, .modal-body .h5, .modal-body .h6 {
     line-height: 1.1;
 }
 
@@ -435,15 +484,15 @@ p, a{
     padding-left: 1.5em;
 }
 
-.modal-body h5 {
-    font-weight: 600;
+.modal-body .h5 {
+    font-weight: 500;
     color: #ff6584;
     margin-top: 1em;
 }
 
-.modal-body h6 {
+.modal-body .h6 {
     font-weight: 500;
-    color: #ffffff;
+    color: var(--primary-color);
     margin-top: 1em;
 }
 
@@ -451,11 +500,50 @@ p, a{
     max-width: 90vw;
 }
 
-#projectModal .carousel-content img {
-    max-height: 400px; 
-    width: auto; 
+/* #modalProjectCarousel .carousel-inner img,
+#modalProjectCarousel .carousel-inner iframe
+{
+    min-height: 400px !important;
+    height: auto !important; 
+    width: 100%;
     object-fit: contain;
     margin: auto;
+} */
+
+#modalProjectCarousel .carousel-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    padding: 0 15px;
+}
+
+#modalProjectCarousel .carousel-caption-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+#modalProjectCarousel .carousel-control-prev,
+#modalProjectCarousel .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalProjectCarousel .carousel-control-prev-icon,
+#modalProjectCarousel .carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#modalProjectCarousel .caption-title {
+    font-family: 'GoodTimes', sans-serif;
+    color: var(--primary-color);
+    margin: 0;
 }
 
 
@@ -464,25 +552,7 @@ p, a{
 @media (max-width: 360px) {
     h1{
         padding: auto;
-        font-size: 1.2em !important;
         font-weight: 600 !important;
-    }
-
-    h2{
-        font-size: 0.8em !important;
-    }
-
-    h4{
-        font-size: 0.5em !important;
-    }
-
-    p{
-        font-size: 0.6em !important;
-    }
-
-    .modal-body p{
-        font-size: 0.7em !important;
-        background-color: blue;
     }
 
     #past-projects, #skills-technologies{
@@ -491,12 +561,11 @@ p, a{
 
     .skill-item{
         padding: 10px;
-        min-height: 250px;
         margin-bottom: 2px;
     }
 
-    #past-projects > h2,
-    #skills-technologies > h2{
+    #past-projects > .h2,
+    #skills-technologies > .h2{
         margin-bottom: 3px !important;
     }
     
@@ -512,10 +581,145 @@ p, a{
     .about-details{
         line-height: 1.2 !important;
     }
-
-    .social-links > .btn{
-        font-size: 0.6em !important;
+    #past-projects,
+    #skills-technologies {
+        padding: 5px;
+        margin-bottom: 10px; /* Add spacing between sections */
     }
+
+    #past-projects .carousel-container,
+    #skills-technologies .carousel-container {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+        overflow: hidden; /* Prevent overflow issues */
+    }
+
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+    }
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px; /* Add spacing between items */
+        transition: transform 0.5s ease;
+    }
+
+    #past-projects .skill-item,
+    #skills-technologies .skill-item {
+        min-width: 100px; /* Reduce width for smaller screens */
+        max-width: 140px;
+        height: auto; /* Ensure cards fit properly */
+        margin: 0 5px; /* Small spacing between cards */
+        padding: 10px;
+    }
+
+    #past-projects .tech-chips-vertical,
+    #skills-technologies .tech-chips-vertical {
+        padding-top: 5px;
+        gap: 4px; /* Reduce gap between chips */
+        max-height: 25vh !important;
+    }
+
+    #past-projects > .h2,
+    #skills-technologies > .h2 {
+        margin-bottom: 8px;
+    }
+
+    .fs-7{
+        font-size: 0.5rem !important;
+    }
+
+    .fs-6 {
+        font-size: 0.6rem !important;
+    }
+
+    .fs-5 {
+        font-size: 0.7rem !important;
+    }
+
+    .fs-4 {
+        font-size: 0.8rem !important;
+    }
+
+    .fs-3 {
+        font-size: 0.8rem !important;
+    }
+
+    .fs-2 {
+        font-size: 0.9rem !important;
+    }
+
+    .fs-1 {
+        font-size: 1rem !important;
+    }
+
+    #about-me{
+        padding: 20px;
+    }
+    .about-details{
+        height: 20vh;
+    }
+
+    /* Adjust scroll buttons for smaller screens */
+    #past-projects .carousel-control-prev,
+    #skills-technologies .carousel-control-prev,
+    #past-projects .carousel-control-next,
+    #skills-technologies .carousel-control-next {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .skill-item{
+        height: 200px !important;
+    }
+    /* Ensure proper spacing in modal footer */
+    #modalFooter {
+        padding: 1rem; /* Add padding for consistent spacing */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Chips container with scrollable overflow */
+    #modalFooter .tech-chips-container {
+        max-height: 100px; /* Set a limit for chips container height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        width: 100%; /* Ensure it spans the available width */
+        padding-right: 10px; /* Add padding for scrollbar clearance */
+    }
+
+    /* Style the chips */
+    .tech-chips-container .tech-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style for the close button */
+    #modalFooter .btn {
+        flex-shrink: 0; /* Prevent the button from shrinking */
+        margin-left: auto; /* Align the button to the right */
+    }
+
+    /* Add custom scrollbar styles */
+    #modalFooter .tech-chips-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }    
 }
 
 /* Small Phones like iPhone SE */
@@ -523,20 +727,7 @@ p, a{
     /* Styles for small phones (375 x 667) */
     h1{
         padding: auto;
-        font-size: 1.2em !important;
         font-weight: 600 !important;
-    }
-
-    h2{
-        font-size: 0.8em !important;
-    }
-
-    h4{
-        font-size: 0.5em !important;
-    }
-
-    p{
-        font-size: 0.6em !important;
     }
 
     #past-projects, #skills-technologies{
@@ -545,12 +736,11 @@ p, a{
 
     .skill-item{
         padding: 10px;
-        min-height: 260px;
         margin-bottom: 2px;
     }
 
-    #past-projects > h2,
-    #skills-technologies > h2{
+    #past-projects > .h2,
+    #skills-technologies > .h2{
         margin-bottom: 3px !important;
     }
     
@@ -566,32 +756,161 @@ p, a{
     .about-details{
         line-height: 1.2 !important;
     }
-
-    .social-links > .btn{
-        font-size: 0.6em !important;
+    #past-projects,
+    #skills-technologies {
+        padding: 5px;
+        margin-bottom: 10px; /* Add spacing between sections */
     }
+
+    #past-projects .carousel-container,
+    #skills-technologies .carousel-container {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+        overflow: hidden; /* Prevent overflow issues */
+    }
+
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+    }
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px; /* Add spacing between items */
+        transition: transform 0.5s ease;
+    }
+
+    #past-projects .skill-item,
+    #skills-technologies .skill-item {
+        min-width: 100px; /* Reduce width for smaller screens */
+        max-width: 140px;
+        height: auto; /* Ensure cards fit properly */
+        margin: 0 5px; /* Small spacing between cards */
+        padding: 10px;
+    }
+
+    #past-projects .tech-chips-vertical,
+    #skills-technologies .tech-chips-vertical {
+        padding-top: 5px;
+        gap: 4px; /* Reduce gap between chips */
+        max-height: 25vh !important;
+    }
+
+    #past-projects > .h2,
+    #skills-technologies > .h2 {
+        margin-bottom: 8px;
+    }
+
+    .fs-7{
+        font-size: 0.6rem !important;
+    }
+
+    .fs-6 {
+        font-size: 0.7rem !important;
+    }
+
+    .fs-5 {
+        font-size: 0.8rem !important;
+    }
+
+    .fs-4 {
+        font-size: 0.9rem !important;
+    }
+
+    .fs-3 {
+        font-size: 1.0rem !important;
+    }
+
+    .fs-2 {
+        font-size: 1.1rem !important;
+    }
+
+    .fs-1 {
+        font-size: 1.2rem !important;
+    }
+
+    #about-me{
+        padding: 20px;
+    }
+    .about-details{
+        height: 20vh;
+    }
+
+    /* Adjust scroll buttons for smaller screens */
+    #past-projects .carousel-control-prev,
+    #skills-technologies .carousel-control-prev,
+    #past-projects .carousel-control-next,
+    #skills-technologies .carousel-control-next {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    #past-projects .carousel-container,
+    #skills-technologies .carousel-container
+    {
+        height: 275px !important;
+    }
+
+    .skill-item{
+        height: 10px !important;
+    }
+    /* Ensure proper spacing in modal footer */
+    #modalFooter {
+        padding: 1rem; /* Add padding for consistent spacing */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Chips container with scrollable overflow */
+    #modalFooter .tech-chips-container {
+        max-height: 100px; /* Set a limit for chips container height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        width: 100%; /* Ensure it spans the available width */
+        padding-right: 10px; /* Add padding for scrollbar clearance */
+    }
+
+    /* Style the chips */
+    .tech-chips-container .tech-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style for the close button */
+    #modalFooter .btn {
+        flex-shrink: 0; /* Prevent the button from shrinking */
+        margin-left: auto; /* Align the button to the right */
+    }
+
+    /* Add custom scrollbar styles */
+    #modalFooter .tech-chips-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }   
 }
 
 /* Modern Phones (Pixel, iPhone 12/13) */
 @media (max-width: 393px) {
     /* Styles for medium phones (393 x 851) */
-    h1{
+    .h1{
         padding: auto;
-        font-size: 1.2em !important;
         font-weight: 600 !important;
     }
 
-    h2{
-        font-size: 0.8em !important;
-    }
-
-    h4{
-        font-size: 0.5em !important;
-    }
-
-    p{
-        font-size: 0.5em !important;
-    }
     #past-projects, #skills-technologies{
         padding: 5px;
     }
@@ -601,8 +920,8 @@ p, a{
         min-height: 300px;
         margin-bottom: 2px;
     }
-    #past-projects > h2,
-    #skills-technologies > h2{
+    #past-projects > .h2,
+    #skills-technologies > .h2{
         margin-bottom: 3px !important;
     }
     
@@ -618,27 +937,28 @@ p, a{
     .about-details{
         line-height: 1.5 !important;
     }
-
-    .social-links > .btn{
-        font-size: 0.6em !important;
-    }
 }
 
 /* Small Tablets */
 @media (max-width: 600px) {
     /* Styles for small tablets (600 x 1024) */
+    h1{
+        padding: auto;
+        font-weight: 600 !important;
+    }
+
     #past-projects, #skills-technologies{
         padding: 5px;
     }
+
     .skill-item{
-        min-width: 160px !important;
         padding: 10px;
-        min-height: 300px;
         margin-bottom: 2px;
     }
-    .skill-item > h4{
-        font-size: 0.5em !important;
-        margin-bottom : 3px !important;
+
+    #past-projects > .h2,
+    #skills-technologies > .h2{
+        margin-bottom: 3px !important;
     }
     
     .skill-item .tech-chips-vertical{
@@ -647,18 +967,184 @@ p, a{
 
     #about-me{
         width: 100vw !important;
-        margin: 0 !important; 
+        padding: 20px !important;
     }
 
-    .about-content p{
-        line-height: 1;
-        font-size: 0.6em;
+    .about-details{
+        line-height: 1.2 !important;
     }
+    #past-projects,
+    #skills-technologies {
+        padding: 5px;
+        margin-bottom: 10px; /* Add spacing between sections */
+    }
+
+    #past-projects .carousel-container,
+    #skills-technologies .carousel-container {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+        overflow: hidden; /* Prevent overflow issues */
+    }
+
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        width: 100%; /* Ensure full width */
+        height: auto; /* Set equal height for both sections */
+    }
+
+    #past-projects .carousel-track,
+    #skills-technologies .carousel-track {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px; /* Add spacing between items */
+        transition: transform 0.5s ease;
+    }
+
+    #past-projects .skill-item,
+    #skills-technologies .skill-item {
+        min-width: 100px; /* Reduce width for smaller screens */
+        max-width: 140px;
+        height: auto; /* Ensure cards fit properly */
+        margin: 0 5px; /* Small spacing between cards */
+        padding: 10px;
+    }
+
+    #past-projects .tech-chips-vertical,
+    #skills-technologies .tech-chips-vertical {
+        padding-top: 5px;
+        gap: 4px; /* Reduce gap between chips */
+        max-height: 25vh !important;
+    }
+
+    #past-projects > .h2,
+    #skills-technologies > .h2 {
+        margin-bottom: 8px;
+    }
+
+    .fs-7{
+        font-size: 0.6rem !important;
+    }
+
+    .fs-6 {
+        font-size: 0.7rem !important;
+    }
+
+    .fs-5 {
+        font-size: 0.8rem !important;
+    }
+
+    .fs-4 {
+        font-size: 0.9rem !important;
+    }
+
+    .fs-3 {
+        font-size: 1.0rem !important;
+    }
+
+    .fs-2 {
+        font-size: 1.1rem !important;
+    }
+
+    .fs-1 {
+        font-size: 1.2rem !important;
+    }
+
+    #about-me{
+        padding: 20px;
+    }
+    .about-details{
+        height: 20vh;
+    }
+
+    /* Adjust scroll buttons for smaller screens */
+    #past-projects .carousel-control-prev,
+    #skills-technologies .carousel-control-prev,
+    #past-projects .carousel-control-next,
+    #skills-technologies .carousel-control-next {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .skill-item{
+        height: 200px !important;
+    }
+    /* Ensure proper spacing in modal footer */
+    #modalFooter {
+        padding: 1rem; /* Add padding for consistent spacing */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Chips container with scrollable overflow */
+    #modalFooter .tech-chips-container {
+        max-height: 100px; /* Set a limit for chips container height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        width: 100%; /* Ensure it spans the available width */
+        padding-right: 10px; /* Add padding for scrollbar clearance */
+    }
+
+    /* Style the chips */
+    .tech-chips-container .tech-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style for the close button */
+    #modalFooter .btn {
+        flex-shrink: 0; /* Prevent the button from shrinking */
+        margin-left: auto; /* Align the button to the right */
+    }
+
+    /* Add custom scrollbar styles */
+    #modalFooter .tech-chips-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }   
 }
 
 /* iPad Mini and Similar Tablets */
 @media (max-width: 768px) {
     /* Styles for medium tablets (768 x 1024) */
+    .fs-7{
+        font-size: 0.6rem !important;
+    }
+
+    .fs-6 {
+        font-size: 0.7rem !important;
+    }
+
+    .fs-5 {
+        font-size: 0.8rem !important;
+    }
+
+    .fs-4 {
+        font-size: 0.9rem !important;
+    }
+
+    .fs-3 {
+        font-size: 1.0rem !important;
+    }
+
+    .fs-2 {
+        font-size: 1.1rem !important;
+    }
+
+    .fs-1 {
+        font-size: 1.2rem !important;
+    }
+    
 }
 
 /* Large Tablets and Small Laptops */
@@ -669,7 +1155,7 @@ p, a{
 /* Small Laptops */
 @media (max-width: 1366px) {
     /* Styles for small laptops (1366 x 768) */
-    #past-projects{
+    /* #past-projects{-
         padding: 5px !important;
         margin-bottom: 5px !important;
     }
@@ -682,37 +1168,19 @@ p, a{
         min-height: 270px;
     }
 
-    #modalCloseBtn{
-        margin-bottom: 40px;
-    }
-
     .modal-content{
         height: 97vh;
-    }
-
-    .modal-footer{
-        padding-bottom: 10px;
+    } */
+    .skill-item{
+        max-height: 250px;
     }
 }
 
 /* Full HD Displays */
 @media (max-width: 1920px) {
     /* Styles for Full HD monitors (1920 x 1080) */
-    #modalCloseBtn {
-        margin-bottom: 60px;
-    }
-
     .modal-content {
         height: 97vh;
-    }
-
-    .modal-footer {
-        padding-bottom: 10px;
-    }
-
-    .skill-item {
-        width: 25vw;
-        margin: 0; 
     }
 
     .skills-container,
@@ -732,9 +1200,5 @@ p, a{
         min-width: 250px;
         margin: 10px;
         text-align: center; 
-    }
-
-    .skill-item > h4{
-        font-size: 0.7em !important;
     }
 }

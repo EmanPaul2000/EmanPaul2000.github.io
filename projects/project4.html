@@ -1,18 +1,18 @@
 <div class="row">
     <div class="col-md-6 text-justify">
-        <p>This project is a client-server application for monitoring health metrics from wearable devices. The server operates in a multi-threaded environment, allowing simultaneous connections from multiple clients over TCP, and logs all interactions for historical tracking.</p>
+        <p class="fs-5 lh-sm">This project is a client-server application for monitoring health metrics from wearable devices. The server operates in a multi-threaded environment, allowing simultaneous connections from multiple clients over TCP, and logs all interactions for historical tracking.</p>
 
-        <h5>Key Features</h5>
+        <p class="h6 fw-bold">Key Features</p>
 
-        <ul>
+        <ul class="fs-6 lh-sm">
             <li><strong>Multi-Client Support:</strong> Handles multiple client connections concurrently, with each client interaction managed in a separate thread.</li>
             <li><strong>Health Monitoring:</strong> Clients can request metrics such as temperature, heart rate, and step count. The server responds with real-time data and logs each request.</li>
             <li><strong>Command-Based System:</strong> Clients send commands (e.g., TEMP, RATE, STEPS), and the server responds accordingly, maintaining counters and logs.</li>
             <li><strong>Data Analysis:</strong> The client app interprets responses, providing feedback like “Fever” for high temperatures or step goal progress.</li>
         </ul>
 
-        <h5>Workflow</h5>
-        <p>Clients connect to the server, send commands, and receive responses based on their request. Each interaction is logged for analysis, offering a reliable solution for tracking health trends in IoT applications.</p>
+        <p class="h6 fw-bold">Workflow</p>
+        <p class="fs-6 lh-sm">Clients connect to the server, send commands, and receive responses based on their request. Each interaction is logged for analysis, offering a reliable solution for tracking health trends in IoT applications.</p>
     </div>
 
     <div class="col-md-6">
@@ -24,7 +24,8 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
-            class="iframe-container">
+            class="w-100 h-100"
+            id="youtube-video">
         </iframe>
         </div>
     </div>
