@@ -584,7 +584,7 @@ p, a{
     #past-projects,
     #skills-technologies {
         padding: 5px;
-        margin-bottom: 10px; /* Add spacing between sections */
+        margin-bottom: 10px;
     }
 
     #past-projects .carousel-container,
