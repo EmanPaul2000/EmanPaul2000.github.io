@@ -157,8 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const updateCarousel = () => {
             const trackWidth = track.offsetWidth;
             const itemWidth = items[0].offsetWidth;
-            const offset = (trackWidth / 2) - (itemWidth / 2) - (activeIndex * itemWidth);
-
+            const screenWidth = window.innerWidth; // Get the screen width
+            const offset = (screenWidth / 2) - (itemWidth / 2) - (activeIndex * itemWidth);
+            
             // Move the track
             track.style.transform = `translateX(${offset}px)`;
 

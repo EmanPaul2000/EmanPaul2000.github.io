@@ -435,7 +435,6 @@ p, a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
     min-height: 100%;
 }
 
@@ -559,11 +558,6 @@ p, a{
         padding: 5px;
     }
 
-    .skill-item{
-        padding: 10px;
-        margin-bottom: 2px;
-    }
-
     #past-projects > .h2,
     #skills-technologies > .h2{
         margin-bottom: 3px !important;
@@ -578,9 +572,7 @@ p, a{
         padding: 20px !important;
     }
 
-    .about-details{
-        line-height: 1.2 !important;
-    }
+
     #past-projects,
     #skills-technologies {
         padding: 5px;
@@ -590,7 +582,6 @@ p, a{
     #past-projects .carousel-container,
     #skills-technologies .carousel-container {
         width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
         overflow: hidden; /* Prevent overflow issues */
     }
 
@@ -614,7 +605,6 @@ p, a{
     #skills-technologies .skill-item {
         min-width: 100px; /* Reduce width for smaller screens */
         max-width: 140px;
-        height: auto; /* Ensure cards fit properly */
         margin: 0 5px; /* Small spacing between cards */
         padding: 10px;
     }
@@ -622,7 +612,6 @@ p, a{
     #past-projects .tech-chips-vertical,
     #skills-technologies .tech-chips-vertical {
         padding-top: 5px;
-        gap: 4px; /* Reduce gap between chips */
         max-height: 25vh !important;
     }
 
@@ -659,11 +648,12 @@ p, a{
         font-size: 1rem !important;
     }
 
-    #about-me{
-        padding: 20px;
-    }
     .about-details{
+        line-height: 0.4 !important;
         height: 20vh;
+    }
+    .about-details p{
+        margin: 0;
     }
 
     /* Adjust scroll buttons for smaller screens */
@@ -677,8 +667,9 @@ p, a{
     }
 
     .skill-item{
-        height: 200px !important;
+        height: 180px !important;
     }
+
     /* Ensure proper spacing in modal footer */
     #modalFooter {
         padding: 1rem; /* Add padding for consistent spacing */
@@ -754,8 +745,13 @@ p, a{
     }
 
     .about-details{
-        line-height: 1.2 !important;
+        line-height: 0.4 !important;
+        height: 20vh;
     }
+    .about-details p{
+        margin: 0;
+    }
+
     #past-projects,
     #skills-technologies {
         padding: 5px;
@@ -1144,12 +1140,38 @@ p, a{
     .fs-1 {
         font-size: 1.2rem !important;
     }
-    
+
+    .about-details{
+        line-height: 1.2 !important;
+        height: 20vh;
+    }
+    .about-details p{
+        margin: 0;
+    }
 }
 
 /* Large Tablets and Small Laptops */
 @media (max-width: 1024px) {
     /* Styles for large tablets or small laptops (1024 x 1366) */
+
+    #about-me{
+        width: 100vw;
+    }
+
+    .about-details{
+        line-height: 1.2 !important;
+        height: 20vh;
+    }
+    .about-details p{
+        margin: 0;
+    }
+    .social-links .btn{
+        font-size: 0.8rem !important;
+        text-align: start;
+        padding: 0;
+        padding-right: 20px !important;
+        padding: 5px;
+    }
 }
 
 /* Small Laptops */
@@ -1173,6 +1195,9 @@ p, a{
     } */
     .skill-item{
         max-height: 250px;
+    }
+    .social-links .btn{
+        font-size: 0.7rem !important;
     }
 }
 
