@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add event listeners
         nextBtn.addEventListener("click", moveNext);
         prevBtn.addEventListener("click", movePrev);
-
+        console.log("Carousel Initialised");
         // Initialize the carousel
         updateCarousel();
     });
