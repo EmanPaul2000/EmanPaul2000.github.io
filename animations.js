@@ -48,6 +48,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }));
 
+
+    particlesJS('particles-js-services', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.2 },
+            size: { value: 1.5 },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.1,
+                width: 1
+            },
+            move: { enable: true, speed: 2 }
+        }
+    });
+
+    particlesJS('particles-js-hire', {
+        particles: {
+            number: { value: 60, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.2 },
+            size: { value: 2 },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.1,
+                width: 1
+            },
+            move: { enable: true, speed: 1.5 }
+        }
+    });
+
+
+
     particlesJS('particles-js-skills', {
         particles: {
             number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -174,4 +213,23 @@ function updateScrollifyIndex() {
         localStorage.setItem('scrollifyIndex', savedIndex);
     }
 }
+
+// --- Scrollify navigation for buttons/links with data-scrollto ---
+$(document).on('click', '[data-scrollto]', function (e) {
+    e.preventDefault();
+
+    if (!$.scrollify) return;
+
+    const id = $(this).attr('data-scrollto');
+    const $target = $('#' + id);
+    if (!$target.length) return;
+
+    const $sections = $('.section');
+    const $sectionEl = $target.closest('.section');
+
+    const index = $sections.index($sectionEl);
+    if (index >= 0) {
+        $.scrollify.move(index); // ✅ updates Scrollify's internal index
+    }
+});
 

@@ -1,1229 +1,771 @@
-/*GENERAL*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =========================================================
+   CLEANED styles.css (updated)
+   - Past Projects + Skills: restore card/panel layout + scroll-safe for Scrollify/100vh
+   - Particles: ONLY on Home, Past Projects, Skills, About Me
+   - Particles: cover full section (100vh) and never block clicks
+   - Hero: vertical centering + hero particles visible ONLY on hero
+   - About Me: avatar next to text (desktop/tablet), stacks only on small screens
+
+   UPDATE (Mobile <= 768px):
+   - Stretch sections/containers to fit ALL content (no internal 100vh clipping)
+   - Allow normal page scrolling
+
+   UPDATE (Hire section):
+   - Desktop: behaves like other Scrollify sections (100vh)
+   - Mobile <= 768px: #hire.section grows to content height
+   ========================================================= */
+
+/* -------------------------
+   GENERAL / RESET
+-------------------------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --primary-color:#FF6584;
+  --secondary-color:#282828;
+  --bg-color:#121212;
+  --text-color:#ffffff;
+  --vh:1vh;
 }
 
-:root {
-    --primary-color: #FF6584;
-    /* --primary-color: rgb(200, 255, 0); */
-    --secondary-color: #282828;
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --vh: 1vh;
+@font-face{
+  font-family:'GoodTimes';
+  src:url('assets/fonts/GoodTimesRg.otf') format('opentype');
+  font-weight:400;
+  font-style:normal;
 }
 
-@font-face {
-    font-family: 'GoodTimes';
-    src: url('assets/fonts/GoodTimesRg.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+@font-face{
+  font-family:'Roboto';
+  src:url('assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
 }
 
-@font-face {
-    font-family: 'Roboto';
-    src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    overflow-x: hidden;
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  overflow:hidden;       /* desktop + Scrollify */
+  overflow-x:hidden;
 }
 
 body{
-    background-color: var(--bg-color);
-    background-image: 
-        linear-gradient(150deg, rgba(255, 255, 255, 0.349) 1px, transparent 1px),
-        linear-gradient(30deg, rgba(255, 255, 255, 0.226) 1px, transparent 1px);
-    background-size: 40px 40px;
-    color: var(--text-color);
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-    overflow-y: hidden;
+  background-color:var(--bg-color);
+  background-image:
+    linear-gradient(150deg, rgba(255,255,255,0.349) 1px, transparent 1px),
+    linear-gradient(30deg, rgba(255,255,255,0.226) 1px, transparent 1px);
+  background-size:40px 40px;
+  color:var(--text-color);
+  font-family:'Roboto',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  overflow-y:hidden;
 }
 
-.no-select {
-    user-select: none;
+.no-select{user-select:none;}
+
+/* Ensure the Scrollify wrapper can fill the viewport */
+#fullpage{height:100vh;}
+
+/* -------------------------
+   SECTIONS
+-------------------------- */
+.section{
+  min-height:100vh;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  margin:0;
+  text-align:center;
+  color:var(--text-color);
 }
 
-/*SECTIONS*/
-.section {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    box-sizing: border-box;
-    color: var(--text-color);
+/* Base backgrounds */
+#hero,
+#past-projects,
+#skills-technologies,
+#about-me{
+  background: linear-gradient(135deg, rgba(40,40,40,0.9), rgba(255,101,132,0.7));
+  position:relative;
+  overflow:hidden;
+  padding:50px;
+  text-align:center;
+  color:var(--text-color);
 }
 
-.section > * {
-    margin: 0 !important;
-    padding: 0;
-    max-width: 100%;
+#past-projects{
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7)) !important;
 }
 
-.particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+/* Reverse / flipped look to avoid harsh break between panels */
+#skills-technologies{
+  background: linear-gradient(45deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7)) !important;
 }
 
-#particles-js-hero, #particles-js-projects, #particles-js-skills, #particles-js-gaming, #particles-js-about {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+/* Give hire normal spacing without changing height on desktop */
+#hire{padding:50px 24px;}
+
+/* -------------------------
+   HERO (Home)
+-------------------------- */
+#hero.section{
+  padding:0;                 /* move spacing inside container */
+  justify-content:center;
+  align-items:center;
 }
 
-#hero, #past-projects, #skills-technologies, #about-me {
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(255, 101, 132, 0.7));
-    position: relative;
-    overflow: hidden;
-    padding: 50px;
-    text-align: center;
-    color: var(--text-color);
+#hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;         /* creates stacking context */
 }
 
-/*TEXT*/
-
-.h1, .h2, .h3, .h4, .h5, .h6, .badge{
-    font-family: 'GoodTimes', sans-serif; 
+#hero > .container-fluid{
+  height:100%;
+  padding:50px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;    /* vertical center */
+  align-items:center;        /* horizontal center */
+  text-align:center;
+  position:relative;
+  z-index:10;                /* above hero particles */
 }
 
-button, .btn {
-    font-family: 'GoodTimes', sans-serif;
+/* Content always above overlays */
+.section .container-fluid,
+.section .container{
+  position:relative;
+  z-index:2;
 }
 
-p, a{
-    font-family: 'Roboto', sans-serif; 
+.section > *{max-width:100%;}
+
+/* -------------------------
+   PARTICLES
+   - Default OFF everywhere
+   - Enable ONLY on: #hero, #past-projects, #skills-technologies, #about-me
+   - Full cover of the section
+   - Never capture clicks
+-------------------------- */
+
+/* Default OFF */
+.section .particles-container,
+.section [id^="particles-js"]{display:none;}
+
+/* Enable ONLY on selected sections */
+#hero .particles-container,
+#hero [id^="particles-js"],
+#past-projects .particles-container,
+#past-projects [id^="particles-js"],
+#skills-technologies .particles-container,
+#skills-technologies [id^="particles-js"],
+#about-me .particles-container,
+#about-me [id^="particles-js"]{display:block;}
+
+/* Full-cover for hero (inside hero only) */
+#hero .particles-container,
+#hero [id^="particles-js"],
+#particles-js-hero{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  z-index:0 !important;
+  pointer-events:none !important;
 }
 
-/*INTERACTIVITY*/
-
-#scroll-buttons {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
+/* particles.js canvas safety */
+#particles-js-hero canvas,
+#hero [id^="particles-js"] canvas,
+#hero .particles-container canvas{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  z-index:0 !important;
+  pointer-events:none !important;
 }
 
-#scroll-buttons button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    margin: 5px 0;
-    padding: 10px;
-    cursor: pointer;
+/* Extra safety: keep CTA rows/buttons above hero particles */
+#hero .d-flex,
+#hero .row,
+#hero .btn{
+  position:relative;
+  z-index:11;
 }
 
-#scroll-buttons button:disabled {
-    opacity: 0.3;
-    cursor: default;
+/* Full-cover for Past/Skills/About */
+#past-projects .particles-container,
+#past-projects [id^="particles-js"],
+#skills-technologies .particles-container,
+#skills-technologies [id^="particles-js"],
+#about-me .particles-container,
+#about-me [id^="particles-js"]{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  z-index:0 !important;
+  pointer-events:none !important;
 }
+
+/* Explicit ID safety */
+#particles-js-projects,
+#particles-js-skills,
+#particles-js-about{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  z-index:0 !important;
+  pointer-events:none !important;
+}
+
+/* Keep section content above particles */
+#hero .container,
+#hero .container-fluid,
+#past-projects .container,
+#past-projects .container-fluid,
+#skills-technologies .container,
+#skills-technologies .container-fluid,
+#about-me .container,
+#about-me .container-fluid{
+  position:relative;
+  z-index:2;
+}
+
+/* -------------------------
+   TYPOGRAPHY
+-------------------------- */
+.h1,.h2,.h3,.h4,.h5,.h6,.badge{font-family:'GoodTimes',sans-serif;}
+button,.btn{font-family:'GoodTimes',sans-serif;}
+p,a{font-family:'Roboto',sans-serif;}
+
+/* -------------------------
+   INTERACTIVITY
+-------------------------- */
+#scroll-buttons{
+  position:fixed;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  z-index:1000;
+}
+
+#scroll-buttons button{
+  background-color:#333;
+  color:#fff;
+  border:none;
+  margin:5px 0;
+  padding:10px;
+  cursor:pointer;
+}
+
+#scroll-buttons button:disabled{opacity:0.3;cursor:default;}
 
 .carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-    top: 65%;
-    height: 10%;
-    transform: translateY(-50%);
-    z-index: 500 !important;
+.carousel-control-next{
+  width:5%;
+  top:65%;
+  height:10%;
+  transform:translateY(-50%);
+  z-index:500 !important;
 }
 
 .carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 2rem;
-    height: 2rem;
+.carousel-control-next-icon{width:2rem;height:2rem;}
+
+/* -------------------------
+   FEATURED PROJECTS (carousel)
+-------------------------- */
+#projectCarousel.carousel{
+  width:90vw;
+  height:auto;
+  overflow:hidden;
+  position:relative;
+  margin:auto;
 }
 
-/*FEATURED PROJECTS*/
+#projectCarousel.carousel-inner{display:block;width:100%;height:100%;}
 
-#projectCarousel.carousel {
-    width: 90vw;
-    height: auto;
-    overflow: hidden;
-    position: relative;
-    margin: auto;
+#projectCarousel.carousel-item{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  height:100%;
+  overflow:hidden;
 }
 
-#projectCarousel.carousel-inner {
-    display: block; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%;
-    height: 100%;
-}
-
-#projectCarousel.carousel-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-#projectCarousel .carousel-item.active:hover{
-    border: var(--primary-color) solid 2px;
-}
-
-#projectCarousel.carousel-content img{
-    max-width: 100%;
-    height: 10vh !important;
-    overflow: hidden;
-}
+#projectCarousel .carousel-item.active:hover{border:var(--primary-color) solid 2px;}
 
 .project-card{
-    background-color: var(--secondary-color);
-    height: 80vh;
-    width: 100%;
-    opacity: 1;
-    z-index: 0;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color:var(--secondary-color);
+  height:80vh;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
+.project-card>img{width:100vw;height:50vh;object-fit:cover;}
 
+.iframe-container{position:relative;width:45vw;height:30vh !important;border:0;margin:auto !important;}
 
-.project-card>img{
-    width: 100vw;
-    height: 50vh;
-    object-fit: cover;
+/* -------------------------
+   CHIPS
+-------------------------- */
+.tech-chips,
+.tech-chips-vertical{
+  padding-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  justify-content:center;
+  align-items:flex-end;
+  margin-bottom:5%;
 }
 
-.iframe-container{
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 45vw;
-    height: 30vh !important;
-    border: 0;
-    margin: auto !important;
+.skill-item>.tech-chips-vertical{align-items:flex-start !important;justify-content:flex-start !important;}
+
+.tech-chips span,
+.tech-chips-vertical span{
+  background-color:var(--primary-color);
+  color:white;
+  padding:4px 8px;
+  border-radius:12px;
+  white-space:nowrap;
+  display:inline-block;
+  margin:2px;
 }
 
-/*CHIPS*/
-
-.tech-chips, 
-.tech-chips-vertical {
-    margin-top: auto;
-    padding-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    justify-content: center;
-    align-items: end;
-    margin-top: 0;
-    margin-bottom: 5%;
-}
-
-.skill-item > .tech-chips-vertical{
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-}
-
-.tech-chips span, 
-.tech-chips-vertical span {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    white-space: nowrap;
-    display: inline-block;
-    margin: 2px;
-}
-
-/*COMBINED SECTION*/
-
-.completed-skills, 
-.skills-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap !important; 
-    justify-content: flex-start !important;
-    align-items: start !important;
-    overflow-x: auto; 
-    scroll-behavior: smooth;
-    padding: 0;
-    margin: 0;
-    scrollbar-width: thin; /* Firefox - Thin scrollbar */
-    scrollbar-color: #FF6584 rgba(255, 255, 255, 0.1); /* Firefox - Thumb and track colors */
-    scroll-snap-type: none;
+/* -------------------------
+   OLD HORIZONTAL CAROUSEL SKILL CARDS (kept)
+-------------------------- */
+.completed-skills,
+.skills-container{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap !important;
+  justify-content:flex-start !important;
+  align-items:flex-start !important;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding:0;
+  margin:0;
+  scrollbar-width:thin;
+  scrollbar-color:#FF6584 rgba(255,255,255,0.1);
+  scroll-snap-type:none;
 }
 
 .skill-item{
-    background-color: var(--secondary-color);
-    z-index: 5;
-    min-width: 150px !important;
-    max-width: 220px !important;
-    /* height: 30vh; */
-    padding: 20px 15px;
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    margin-bottom: 1vh;
-    margin-top: 1vh;
+  background-color:var(--secondary-color);
+  z-index:5;
+  min-width:150px !important;
+  max-width:220px !important;
+  padding:20px 15px;
+  border-radius:8px;
+  position:relative;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.3);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  margin:1vh 1vw;
 }
 
 #past-projects .carousel-container,
-#skills-technologies .carousel-container{
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
+#skills-technologies .carousel-container{width:100%;overflow:hidden;position:relative;z-index:2;}
+
 #past-projects .carousel-track,
-#skills-technologies .carousel-track {
-    display: flex;
-    gap: 1rem;
-    transform: translateX(0);
-    transition: transform 0.5s ease;
+#skills-technologies .carousel-track{
+  display:flex;
+  gap:1rem;
+  transform:translateX(0);
+  transition:transform 0.5s ease;
 }
 
-#prevBtn1, #prevBtn2, #nextBtn1, #nextBtn2{
-    background-color: #333333e5;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
+#prevBtn1,#prevBtn2,#nextBtn1,#nextBtn2{background-color:#333333e5;border-radius:50%;width:40px;height:40px;}
 
 #past-projects .skill-item,
-#skills-technologies .skill-item{
-    flex: 0 0 auto;
-    width: 28vw; /* Adjust the width as needed */
-    transition: transform 0.3s ease;
-}
+#skills-technologies .skill-item{flex:0 0 auto;width:28vw;transition:transform 0.3s ease;}
+
 #past-projects .skill-item.active,
-#skills-technologies .skill-item.active {
-    transform: scale(1.1);
-    border: var(--primary-color) solid 2px;
+#skills-technologies .skill-item.active{transform:scale(1.1);border:var(--primary-color) solid 2px;}
+
+.badge{padding:0.5rem 1rem;border-radius:0.5rem;background-color:#6c757d;}
+
+/* -------------------------
+   ABOUT ME (card layout)
+-------------------------- */
+#about-me{width:80vw;margin:auto;}
+#about-me.section{padding:0;}
+
+#about-me .about-wrap{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1200px;
+  padding:40px 20px;
 }
 
-#past-projects .skill-item.active:hover{
-    border: white solid 2px;
-    transform: translateY(5px);
-    transform: scale(1.1);
+.about-card{
+  position:relative;
+  z-index:2;
+  background: rgba(20,20,20,0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-#past-projects .skill-item.active .tech-chips-vertical,
-#skills-technologies .skill-item.active .tech-chips-vertical {
-    overflow-y: auto;
+/* Default: avatar NEXT TO text */
+.about-profile{display:flex;gap:22px;align-items:stretch;}
+
+.about-avatar{
+  flex:0 0 180px;
+  width:180px;
+  border-radius:22px;
+  overflow:hidden;
+  margin:0;
 }
 
-/* Custom Scrollbar for Specific Containers */
-#past-projects .skill-item.active .tech-chips-vertical,
-#skills-technologies .skill-item.active .tech-chips-vertical {
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: var(--primary-color) #262626; /* Thumb and Track colors */
+.about-avatar img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+
+.about-identity{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  min-height:100%;
 }
 
-/* Webkit Browsers */
-#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar,
-#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar {
-    width: 8px; /* Adjust for desired scrollbar thickness */
+.about-tags{display:flex;flex-wrap:wrap;gap:10px;}
+
+.about-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.10);
+  font-size:0.9rem;
 }
 
-#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-track,
-#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-track {
-    background: #262626;
-    border-radius: 8px;
+.about-actions{
+  margin-top:auto;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
-#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb,
-#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 8px;
+.about-actions .btn,
+.about-actions a,
+.about-actions button{
+  width:100%;
+  margin:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff !important;
 }
 
-#past-projects .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb:hover,
-#skills-technologies .skill-item.active .tech-chips-vertical::-webkit-scrollbar-thumb:hover {
-    background: #9b3d50;
+/* Space between icon and text */
+#about-me .about-actions .btn i,
+#about-me .about-actions .btn .fa,
+#about-me .about-actions .btn svg{margin-right:0.5rem;}
+
+.btn-github{background-color:#333;}
+.btn-github:hover{background-color:#555;}
+.btn-linkedin{background-color:#0077b5;}
+.btn-linkedin:hover{background-color:#005582;}
+.btn-email{background-color:#28A745;}
+.btn-email:hover{background-color:#1E7A33;}
+.btn-itchio{background-color:#FF5C5A;}
+.btn-itchio:hover{background-color:#d14a48;}
+
+/* -------------------------
+   MODAL
+-------------------------- */
+.modal-content{background-color:#282828;color:#ffffff;}
+.modal-title{font-family:'GoodTimes',sans-serif;}
+.modal{height:100vh;}
+.modal-body{flex:1 1 auto;overflow-y:auto;height:65vh;}
+.modal-body p,.modal-body ul,.modal-body .h5,.modal-body .h6{line-height:1.1;}
+.modal-body ul{list-style-type:disc;padding-left:1.5em;}
+.modal-body .h5{font-weight:500;color:#ff6584;margin-top:1em;}
+.modal-body .h6{font-weight:500;color:var(--primary-color);margin-top:1em;}
+.modal-dialog.modal-xl{max-width:90vw;}
+
+/* -------------------------
+   SERVICES
+-------------------------- */
+.service-card{
+  background:rgba(20,20,20,0.75);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  backdrop-filter:blur(6px);
 }
 
+.service-card .card-body ul{padding-left:1.1rem;}
 
-.badge {
-    padding: 0.5rem 1rem; /* Adjust padding for better scaling */
-    border-radius: 0.5rem; /* Make badges rounded */
-    background-color: #6c757d; /* Adjust background for consistency */
+.service-card:hover{
+  transform:translateY(-4px);
+  transition:transform 200ms ease;
+  border-color:rgba(255,255,255,0.22);
 }
 
-/*ABOUT ME*/
-
-#about-me{
-    width: 80vw;
-    margin: auto;
+@media (hover:hover) and (pointer:fine){
+  .clickable{cursor:pointer;border:2px solid transparent;transition:border-color 0.3s ease;}
 }
 
-#about-me img{
-    width: 18vh;
-    height: 18vh;
+/* =========================================================
+   PAST PROJECTS + SKILLS: CARD LIST LAYOUT
+   - Desktop: keep 100vh with internal scroll area
+   ========================================================= */
 
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
+body #past-projects.section,
+body #skills-technologies.section{
+  display:block !important;
+  height:100vh !important;
+  min-height:100vh !important;
+  overflow:hidden !important;
+  padding:40px 24px !important;
 }
 
-.about-details {
-    flex: 1;
-    text-align: left;
-    line-height: 2.8;
+body #past-projects .section-head,
+body #skills-technologies .section-head{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:0 auto 12px;
+  text-align:center;
 }
 
-.social-links .btn{
-    width: 75%;
-    color: var(--text-color);
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
+body #past-projects .filter-bar,
+body #skills-technologies .filter-bar{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:12px auto 18px !important;
+  display:flex !important;
+  justify-content:center !important;
+  gap:10px !important;
+  flex-wrap:wrap !important;
 }
 
-.btn-github {
-    background-color: #333;
-}
-.btn-github:hover {
-    background-color: #555;
-}
-.btn-linkedin {
-    background-color: #0077b5;
-}
-.btn-linkedin:hover {
-    background-color: #005582;
-}
-.btn-email{
-    background-color: #28A745; 
-}
-.btn-email:hover{
-    background-color: #1E7A33;
-}
-.btn-itchio{
-    background-color: #FF5C5A ;
-}
-.btn-itchio:hover{
-    background-color: #d14a48 ;
+body #past-projects .filter-btn,
+body #skills-technologies .filter-btn{
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(20,20,20,0.55);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+  transition:transform 150ms ease, border-color 150ms ease;
+  font-family:'GoodTimes',sans-serif;
+  font-size:0.85rem;
 }
 
-.about-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100%;
+body #past-projects .filter-btn:hover,
+body #skills-technologies .filter-btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,0.25);
 }
 
-.profile-image-links {
-    flex: 0.4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body #past-projects .filter-btn.active,
+body #skills-technologies .filter-btn.active{
+  border-color:rgba(255,101,132,0.95);
+  background:rgba(255,101,132,0.20);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .clickable {
-        cursor: pointer; 
-        border: 2px solid transparent; 
-        transition: border-color 0.3s ease; 
-    }    
+/* Scrollable content area */
+body #past-projects :is(.grid-cards,.cards,.card-list,.projects-list,.items,.list),
+body #skills-technologies :is(.grid-cards,.cards,.card-list,.skills-list,.items,.list){
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:0 auto !important;
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:14px;
+  max-height:calc(100vh - 220px) !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  padding:10px 10px 18px !important;
 }
 
-/*MODAL*/
+body #past-projects > .container,
+body #past-projects > .container-fluid,
+body #skills-technologies > .container,
+body #skills-technologies > .container-fluid{height:100%;}
 
-.modal-content {
-    background-color: #282828;
-    color: #ffffff;
+/* Card styling */
+body #past-projects :is(.grid-card,.project-card,.project-item,.project,.item,.card),
+body #skills-technologies :is(.grid-card,.skill-card,.skill-item,.skill,.item,.card){
+  background:rgba(30,30,30,0.75) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:18px !important;
+  padding:18px 16px !important;
+  box-shadow:0 10px 20px rgba(0,0,0,0.22) !important;
 }
 
-.modal-title {
-    font-family: 'GoodTimes', sans-serif; 
+/* Grid sizing */
+body #past-projects .grid-card,
+body #skills-technologies .grid-card{grid-column:span 4;}
+
+body #past-projects :is(.projects-list,.card-list,.items,.list) > *{grid-column:span 4;}
+body #skills-technologies :is(.skills-list,.card-list,.items,.list) > *{grid-column:span 4;}
+
+/* Left-align text in cards */
+body #past-projects :is(.grid-card,.project-card,.project-item,.project,.item,.card),
+body #past-projects :is(.grid-card,.project-card,.project-item,.project,.item,.card) *,
+body #skills-technologies :is(.grid-card,.skill-card,.skill-item,.skill,.item,.card),
+body #skills-technologies :is(.grid-card,.skill-card,.skill-item,.skill,.item,.card) *{
+  text-align:left !important;
 }
 
-.modal{
-    height: 100vh;
+/* Chips align left in cards */
+body #past-projects :is(.tech-chips,.tech-chips-vertical),
+body #skills-technologies :is(.tech-chips,.tech-chips-vertical){
+  justify-content:flex-start !important;
+  margin-bottom:0 !important;
 }
 
-.modal-body {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    height: 65vh;
+/* Hover (no translate so it won’t clip) */
+@media (hover:hover) and (pointer:fine){
+  body #past-projects :is(.grid-card,.project-card,.project-item,.project,.item,.card):hover,
+  body #skills-technologies :is(.grid-card,.skill-card,.skill-item,.skill,.item,.card):hover{
+    border-color:rgba(255,255,255,0.18) !important;
+    outline:2px solid rgba(255,101,132,0.55);
+    outline-offset:2px;
+    box-shadow:0 14px 26px rgba(0,0,0,0.35) !important;
+  }
 }
 
-.modal-body p, .modal-body ul, .modal-body .h5, .modal-body .h6 {
-    line-height: 1.1;
+/* Scrollbar */
+body #past-projects :is(.grid-cards,.cards,.card-list,.projects-list,.items,.list)::-webkit-scrollbar,
+body #skills-technologies :is(.grid-cards,.cards,.card-list,.skills-list,.items,.list)::-webkit-scrollbar{width:8px;}
+
+body #past-projects :is(.grid-cards,.cards,.card-list,.projects-list,.items,.list)::-webkit-scrollbar-thumb,
+body #skills-technologies :is(.grid-cards,.cards,.card-list,.skills-list,.items,.list)::-webkit-scrollbar-thumb{
+  background:rgba(255,101,132,0.9);
+  border-radius:8px;
 }
 
-.modal-body ul {
-    list-style-type: disc;
-    padding-left: 1.5em;
+/* Responsive grid (<= 992) */
+@media (max-width:992px){
+  body #past-projects.section,
+  body #skills-technologies.section{padding:28px 16px !important;}
+
+  body #past-projects :is(.projects-list,.card-list,.items,.list) > *,
+  body #skills-technologies :is(.skills-list,.card-list,.items,.list) > *{grid-column:span 6;}
+
+  body #past-projects .grid-card,
+  body #skills-technologies .grid-card{grid-column:span 6;}
+
+  body #past-projects :is(.grid-cards,.cards,.card-list,.projects-list,.items,.list),
+  body #skills-technologies :is(.grid-cards,.cards,.card-list,.skills-list,.items,.list){
+    max-height:calc(100vh - 240px) !important;
+  }
 }
 
-.modal-body .h5 {
-    font-weight: 500;
-    color: #ff6584;
-    margin-top: 1em;
+@media (max-width:600px){
+  body #past-projects :is(.projects-list,.card-list,.items,.list) > *,
+  body #skills-technologies :is(.skills-list,.card-list,.items,.list) > *{grid-column:span 12;}
+
+  body #past-projects .grid-card,
+  body #skills-technologies .grid-card{grid-column:span 12;}
 }
 
-.modal-body .h6 {
-    font-weight: 500;
-    color: var(--primary-color);
-    margin-top: 1em;
+/* =========================================================
+   RESPONSIVE BEHAVIOR
+   - Tablet: keep avatar next to text, just shrink it
+   - Small screens: stack avatar above text
+   ========================================================= */
+
+@media (max-width:992px){
+  #about-me{width:100vw !important;padding:20px !important;}
+  .about-avatar{flex:0 0 140px;width:140px;}
 }
 
-.modal-dialog.modal-xl {
-    max-width: 90vw;
+@media (max-width:600px){
+  .about-profile{flex-direction:column;align-items:center;text-align:center;}
+  .about-identity{width:100%;text-align:center;}
+  .about-tags{justify-content:center;}
+  .about-avatar{width:min(240px,70vw);flex:0 0 auto;height:min(240px,70vw);}
+  .about-actions{grid-template-columns:1fr 1fr;}
 }
 
-/* #modalProjectCarousel .carousel-inner img,
-#modalProjectCarousel .carousel-inner iframe
-{
-    min-height: 400px !important;
-    height: auto !important; 
-    width: 100%;
-    object-fit: contain;
-    margin: auto;
-} */
+@media (max-width:1024px){#about-me{width:100vw;}}
+@media (max-width:1366px){.skill-item{max-height:250px;}}
 
-#modalProjectCarousel .carousel-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    padding: 0 15px;
+/* Hide Scrollify arrows on mobile/manual scroll */
+@media (max-width:768px){
+  #scroll-buttons{display:none !important;}
 }
 
-#modalProjectCarousel .carousel-caption-center {
-    flex-grow: 1;
-    text-align: center;
-}
-
-#modalProjectCarousel .carousel-control-prev,
-#modalProjectCarousel .carousel-control-next {
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#modalProjectCarousel .carousel-control-prev-icon,
-#modalProjectCarousel .carousel-control-next-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-#modalProjectCarousel .caption-title {
-    font-family: 'GoodTimes', sans-serif;
-    color: var(--primary-color);
-    margin: 0;
-}
-
-
-
-/* Mobile Portrait (Small Phones) */
-@media (max-width: 360px) {
-    h1{
-        padding: auto;
-        font-weight: 600 !important;
-    }
-
-    #past-projects, #skills-technologies{
-        padding: 5px;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2{
-        margin-bottom: 3px !important;
-    }
-    
-    .skill-item .tech-chips-vertical{
-        padding-top: 0;
-    }
-
-    #about-me{
-        width: 100vw !important;
-        padding: 20px !important;
-    }
-
-
-    #past-projects,
-    #skills-technologies {
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-
-    #past-projects .carousel-container,
-    #skills-technologies .carousel-container {
-        width: 100%; /* Ensure full width */
-        overflow: hidden; /* Prevent overflow issues */
-    }
-
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
-    }
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px; /* Add spacing between items */
-        transition: transform 0.5s ease;
-    }
-
-    #past-projects .skill-item,
-    #skills-technologies .skill-item {
-        min-width: 100px; /* Reduce width for smaller screens */
-        max-width: 140px;
-        margin: 0 5px; /* Small spacing between cards */
-        padding: 10px;
-    }
-
-    #past-projects .tech-chips-vertical,
-    #skills-technologies .tech-chips-vertical {
-        padding-top: 5px;
-        max-height: 25vh !important;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2 {
-        margin-bottom: 8px;
-    }
-
-    .fs-7{
-        font-size: 0.5rem !important;
-    }
-
-    .fs-6 {
-        font-size: 0.6rem !important;
-    }
-
-    .fs-5 {
-        font-size: 0.7rem !important;
-    }
-
-    .fs-4 {
-        font-size: 0.8rem !important;
-    }
-
-    .fs-3 {
-        font-size: 0.8rem !important;
-    }
-
-    .fs-2 {
-        font-size: 0.9rem !important;
-    }
-
-    .fs-1 {
-        font-size: 1rem !important;
-    }
-
-    .about-details{
-        line-height: 0.4 !important;
-        height: 20vh;
-    }
-    .about-details p{
-        margin: 0;
-    }
-
-    /* Adjust scroll buttons for smaller screens */
-    #past-projects .carousel-control-prev,
-    #skills-technologies .carousel-control-prev,
-    #past-projects .carousel-control-next,
-    #skills-technologies .carousel-control-next {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
-
-    .skill-item{
-        height: 180px !important;
-    }
-
-    /* Ensure proper spacing in modal footer */
-    #modalFooter {
-        padding: 1rem; /* Add padding for consistent spacing */
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    /* Chips container with scrollable overflow */
-    #modalFooter .tech-chips-container {
-        max-height: 100px; /* Set a limit for chips container height */
-        overflow-y: auto; /* Enable vertical scrolling */
-        width: 100%; /* Ensure it spans the available width */
-        padding-right: 10px; /* Add padding for scrollbar clearance */
-    }
-
-    /* Style the chips */
-    .tech-chips-container .tech-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Style for the close button */
-    #modalFooter .btn {
-        flex-shrink: 0; /* Prevent the button from shrinking */
-        margin-left: auto; /* Align the button to the right */
-    }
-
-    /* Add custom scrollbar styles */
-    #modalFooter .tech-chips-container::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 4px;
-    }    
-}
-
-/* Small Phones like iPhone SE */
-@media (max-width: 375px) {
-    /* Styles for small phones (375 x 667) */
-    h1{
-        padding: auto;
-        font-weight: 600 !important;
-    }
-
-    #past-projects, #skills-technologies{
-        padding: 5px;
-    }
-
-    .skill-item{
-        padding: 10px;
-        margin-bottom: 2px;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2{
-        margin-bottom: 3px !important;
-    }
-    
-    .skill-item .tech-chips-vertical{
-        padding-top: 0;
-    }
-
-    #about-me{
-        width: 100vw !important;
-        padding: 20px !important;
-    }
-
-    .about-details{
-        line-height: 0.4 !important;
-        height: 20vh;
-    }
-    .about-details p{
-        margin: 0;
-    }
-
-    #past-projects,
-    #skills-technologies {
-        padding: 5px;
-        margin-bottom: 10px; /* Add spacing between sections */
-    }
-
-    #past-projects .carousel-container,
-    #skills-technologies .carousel-container {
-        width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
-        overflow: hidden; /* Prevent overflow issues */
-    }
-
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
-    }
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px; /* Add spacing between items */
-        transition: transform 0.5s ease;
-    }
-
-    #past-projects .skill-item,
-    #skills-technologies .skill-item {
-        min-width: 100px; /* Reduce width for smaller screens */
-        max-width: 140px;
-        height: auto; /* Ensure cards fit properly */
-        margin: 0 5px; /* Small spacing between cards */
-        padding: 10px;
-    }
-
-    #past-projects .tech-chips-vertical,
-    #skills-technologies .tech-chips-vertical {
-        padding-top: 5px;
-        gap: 4px; /* Reduce gap between chips */
-        max-height: 25vh !important;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2 {
-        margin-bottom: 8px;
-    }
-
-    .fs-7{
-        font-size: 0.6rem !important;
-    }
-
-    .fs-6 {
-        font-size: 0.7rem !important;
-    }
-
-    .fs-5 {
-        font-size: 0.8rem !important;
-    }
-
-    .fs-4 {
-        font-size: 0.9rem !important;
-    }
-
-    .fs-3 {
-        font-size: 1.0rem !important;
-    }
-
-    .fs-2 {
-        font-size: 1.1rem !important;
-    }
-
-    .fs-1 {
-        font-size: 1.2rem !important;
-    }
-
-    #about-me{
-        padding: 20px;
-    }
-    .about-details{
-        height: 20vh;
-    }
-
-    /* Adjust scroll buttons for smaller screens */
-    #past-projects .carousel-control-prev,
-    #skills-technologies .carousel-control-prev,
-    #past-projects .carousel-control-next,
-    #skills-technologies .carousel-control-next {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
-
-    #past-projects .carousel-container,
-    #skills-technologies .carousel-container
-    {
-        height: 275px !important;
-    }
-
-    .skill-item{
-        height: 10px !important;
-    }
-    /* Ensure proper spacing in modal footer */
-    #modalFooter {
-        padding: 1rem; /* Add padding for consistent spacing */
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    /* Chips container with scrollable overflow */
-    #modalFooter .tech-chips-container {
-        max-height: 100px; /* Set a limit for chips container height */
-        overflow-y: auto; /* Enable vertical scrolling */
-        width: 100%; /* Ensure it spans the available width */
-        padding-right: 10px; /* Add padding for scrollbar clearance */
-    }
-
-    /* Style the chips */
-    .tech-chips-container .tech-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Style for the close button */
-    #modalFooter .btn {
-        flex-shrink: 0; /* Prevent the button from shrinking */
-        margin-left: auto; /* Align the button to the right */
-    }
-
-    /* Add custom scrollbar styles */
-    #modalFooter .tech-chips-container::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 4px;
-    }   
-}
-
-/* Modern Phones (Pixel, iPhone 12/13) */
-@media (max-width: 393px) {
-    /* Styles for medium phones (393 x 851) */
-    .h1{
-        padding: auto;
-        font-weight: 600 !important;
-    }
-
-    #past-projects, #skills-technologies{
-        padding: 5px;
-    }
-    .skill-item{
-        min-width: 160px !important;
-        padding: 10px;
-        min-height: 300px;
-        margin-bottom: 2px;
-    }
-    #past-projects > .h2,
-    #skills-technologies > .h2{
-        margin-bottom: 3px !important;
-    }
-    
-    .skill-item .tech-chips-vertical{
-        padding-top: 0;
-    }
-    #about-me{
-        width: 100vw !important;
-        margin-left: 0 !important;   
-        padding: 20px !important;
-    }
-
-    .about-details{
-        line-height: 1.5 !important;
-    }
-}
-
-/* Small Tablets */
-@media (max-width: 600px) {
-    /* Styles for small tablets (600 x 1024) */
-    h1{
-        padding: auto;
-        font-weight: 600 !important;
-    }
-
-    #past-projects, #skills-technologies{
-        padding: 5px;
-    }
-
-    .skill-item{
-        padding: 10px;
-        margin-bottom: 2px;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2{
-        margin-bottom: 3px !important;
-    }
-    
-    .skill-item .tech-chips-vertical{
-        padding-top: 0;
-    }
-
-    #about-me{
-        width: 100vw !important;
-        padding: 20px !important;
-    }
-
-    .about-details{
-        line-height: 1.2 !important;
-    }
-    #past-projects,
-    #skills-technologies {
-        padding: 5px;
-        margin-bottom: 10px; /* Add spacing between sections */
-    }
-
-    #past-projects .carousel-container,
-    #skills-technologies .carousel-container {
-        width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
-        overflow: hidden; /* Prevent overflow issues */
-    }
-
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        width: 100%; /* Ensure full width */
-        height: auto; /* Set equal height for both sections */
-    }
-
-    #past-projects .carousel-track,
-    #skills-technologies .carousel-track {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px; /* Add spacing between items */
-        transition: transform 0.5s ease;
-    }
-
-    #past-projects .skill-item,
-    #skills-technologies .skill-item {
-        min-width: 100px; /* Reduce width for smaller screens */
-        max-width: 140px;
-        height: auto; /* Ensure cards fit properly */
-        margin: 0 5px; /* Small spacing between cards */
-        padding: 10px;
-    }
-
-    #past-projects .tech-chips-vertical,
-    #skills-technologies .tech-chips-vertical {
-        padding-top: 5px;
-        gap: 4px; /* Reduce gap between chips */
-        max-height: 25vh !important;
-    }
-
-    #past-projects > .h2,
-    #skills-technologies > .h2 {
-        margin-bottom: 8px;
-    }
-
-    .fs-7{
-        font-size: 0.6rem !important;
-    }
-
-    .fs-6 {
-        font-size: 0.7rem !important;
-    }
-
-    .fs-5 {
-        font-size: 0.8rem !important;
-    }
-
-    .fs-4 {
-        font-size: 0.9rem !important;
-    }
-
-    .fs-3 {
-        font-size: 1.0rem !important;
-    }
-
-    .fs-2 {
-        font-size: 1.1rem !important;
-    }
-
-    .fs-1 {
-        font-size: 1.2rem !important;
-    }
-
-    #about-me{
-        padding: 20px;
-    }
-    .about-details{
-        height: 20vh;
-    }
-
-    /* Adjust scroll buttons for smaller screens */
-    #past-projects .carousel-control-prev,
-    #skills-technologies .carousel-control-prev,
-    #past-projects .carousel-control-next,
-    #skills-technologies .carousel-control-next {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
-
-    .skill-item{
-        height: 200px !important;
-    }
-    /* Ensure proper spacing in modal footer */
-    #modalFooter {
-        padding: 1rem; /* Add padding for consistent spacing */
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    /* Chips container with scrollable overflow */
-    #modalFooter .tech-chips-container {
-        max-height: 100px; /* Set a limit for chips container height */
-        overflow-y: auto; /* Enable vertical scrolling */
-        width: 100%; /* Ensure it spans the available width */
-        padding-right: 10px; /* Add padding for scrollbar clearance */
-    }
-
-    /* Style the chips */
-    .tech-chips-container .tech-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Style for the close button */
-    #modalFooter .btn {
-        flex-shrink: 0; /* Prevent the button from shrinking */
-        margin-left: auto; /* Align the button to the right */
-    }
-
-    /* Add custom scrollbar styles */
-    #modalFooter .tech-chips-container::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    #modalFooter .tech-chips-container::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 4px;
-    }   
-}
-
-/* iPad Mini and Similar Tablets */
-@media (max-width: 768px) {
-    /* Styles for medium tablets (768 x 1024) */
-    .fs-7{
-        font-size: 0.6rem !important;
-    }
-
-    .fs-6 {
-        font-size: 0.7rem !important;
-    }
-
-    .fs-5 {
-        font-size: 0.8rem !important;
-    }
-
-    .fs-4 {
-        font-size: 0.9rem !important;
-    }
-
-    .fs-3 {
-        font-size: 1.0rem !important;
-    }
-
-    .fs-2 {
-        font-size: 1.1rem !important;
-    }
-
-    .fs-1 {
-        font-size: 1.2rem !important;
-    }
-
-    .about-details{
-        line-height: 1.2 !important;
-        height: 20vh;
-    }
-    .about-details p{
-        margin: 0;
-    }
-}
-
-/* Large Tablets and Small Laptops */
-@media (max-width: 1024px) {
-    /* Styles for large tablets or small laptops (1024 x 1366) */
-
-    #about-me{
-        width: 100vw;
-    }
-
-    .about-details{
-        line-height: 1.2 !important;
-        height: 20vh;
-    }
-    .about-details p{
-        margin: 0;
-    }
-    .social-links .btn{
-        font-size: 0.8rem !important;
-        text-align: start;
-        padding: 0;
-        padding-right: 20px !important;
-        padding: 5px;
-    }
-}
-
-/* Small Laptops */
-@media (max-width: 1366px) {
-    /* Styles for small laptops (1366 x 768) */
-    /* #past-projects{-
-        padding: 5px !important;
-        margin-bottom: 5px !important;
-    }
-    #skills-technologies{
-        padding: 5px !important;
-        margin-bottom: 15px !important;
-
-    }
-    .skill-item{
-        min-height: 270px;
-    }
-
-    .modal-content{
-        height: 97vh;
-    } */
-    .skill-item{
-        max-height: 250px;
-    }
-    .social-links .btn{
-        font-size: 0.7rem !important;
-    }
-}
-
-/* Full HD Displays */
-@media (max-width: 1920px) {
-    /* Styles for Full HD monitors (1920 x 1080) */
-    .modal-content {
-        height: 97vh;
-    }
-
-    .skills-container,
-    .completed-skills {
-        display: flex !important; 
-        flex-wrap: wrap !important; 
-        justify-content: center !important;
-        align-items: center;
-        gap: 20px;
-        width: 100%; 
-        margin: auto;
-    }
-
-    .skill-item {
-        flex: 1 1 auto; 
-        max-width: 300px; 
-        min-width: 250px;
-        margin: 10px;
-        text-align: center; 
-    }
+/* =========================================================
+   MOBILE <= 768px: Stretch containers to fit ALL content
+   (Scrollify disabled in JS for this breakpoint)
+   ========================================================= */
+@media (max-width:768px){
+  html,body{
+    height:auto !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+  }
+
+  #fullpage{height:auto !important;}
+
+  /* Let sections grow with their content */
+  .section{
+    height:auto !important;
+    min-height:100vh !important;
+    overflow:visible !important;
+    display:block !important;        /* avoid flex centering causing weird gaps */
+  }
+
+  /* Keep Hero nicely centered, but still allow page to scroll */
+  #hero.section{
+    height:100vh !important;
+    min-height:100vh !important;
+    display:flex !important;
+  }
+
+  /* Past Projects + Skills: remove internal scroll constraints */
+  body #past-projects.section,
+  body #skills-technologies.section{
+    height:auto !important;
+    min-height:100vh !important;
+    overflow:visible !important;
+  }
+
+  body #past-projects :is(.grid-cards,.cards,.card-list,.projects-list,.items,.list),
+  body #skills-technologies :is(.grid-cards,.cards,.card-list,.skills-list,.items,.list){
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  /* Hire sizes to content ONLY on mobile/manual-scroll */
+  #hire.section{
+    height:auto !important;
+    min-height:unset !important;
+    overflow:visible !important;
+    display:block !important;
+    padding:40px 16px !important;
+  }
 }
