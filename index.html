@@ -1,709 +1,367 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, height=device-height, initial-scale=1.0" name="viewport" />
-        <title>Eman Paul Abela Portfolio</title>
-        <link href="assets/images/Icon.ico" rel="icon" type="image/x-icon" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-        <link href="styles.css" rel="stylesheet" />
-        <!-- jQuery and Scrollify -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="lib/jquery.scrollify.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>Eman Paul Abela Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/Icon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- jQuery and Scrollify -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="lib/jquery.scrollify.js"></script>
 </head>
 
+
 <body>
-        <!-- Up and Down Arrows for Section Navigation -->
-        <div id="scroll-buttons">
-                <button aria-label="Scroll Up" disabled="" id="scroll-up"><i
-                                class="fa-solid fa-chevron-up"></i></button>
-                <button aria-label="Scroll Down" id="scroll-down"><i class="fa-solid fa-chevron-down"></i></button>
-        </div>
-        <div id="fullpage">
-                <!--Hero with Title-->
-                <header class="section" id="hero">
-                        <div class="container-fluid">
-                                <div class="particles-container" id="particles-js-hero"></div>
-                                <p class="h1 display-5 text-center">Welcome to My Digital Playground</p>
-                                <p class="lead text-center lh-sm">Freelance .NET/SQL Developer • Web/API Integrations •
-                                        Data &amp; Dashboards</p>
-                                <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-                                        <button class="btn btn-primary btn-lg js-scrollify" type="button"
-                                                data-scrollto="hire">Hire me</button>
-                                        <button class="btn btn-outline-light btn-lg js-scrollify" type="button"
-                                                data-scrollto="services">See services</button>
-                                        <a class="btn btn-outline-light btn-lg"
-                                                href="mailto:emanpaulabela2000@gmail.com?subject=Freelance%20Inquiry">Email</a>
-                                </div>
-                                <!-- <button class="btn btn-primary btn-lg mt-3" onclick="scrollToProjects()">Explore My Work</button> -->
-                        </div>
-                </header>
-                <section class="section" id="services">
-                        <div class="container-fluid py-5">
-                                <div class="particles-container" id="particles-js-services"></div>
-                                <p class="h2 fs-3 fs-md-2 text-center mb-4">Freelance Services</p>
-                                <p class="text-center mb-5 mx-auto" style="max-width: 900px;">
-                                        I help small teams and busy founders ship fixes and improvements fast —
-                                        especially in <strong>.NET</strong>, <strong>SQL Server</strong>, and
-                                        <strong>integrations</strong>.
-                                        Clear scope, clean handover, no drama.
-                                </p>
-                                <div class="row g-4 justify-content-center">
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                                <div class="card service-card h-100 shadow-sm">
-                                                        <div class="card-body">
-                                                                <p class="h5 text-center mb-3">Bugfix Sprint</p>
-                                                                <ul class="lh-lg mb-0">
-                                                                        <li>Diagnose + fix 1–3 issues</li>
-                                                                        <li>PR / patch + notes</li>
-                                                                        <li>Optional: tests &amp; logging</li>
-                                                                </ul>
-                                                        </div>
-                                                        <div
-                                                                class="card-footer bg-transparent border-0 text-center pb-4">
-                                                                <button class="btn btn-primary js-scrollify"
-                                                                        type="button" data-scrollto="hire">Ask for a
-                                                                        quote</button>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                                <div class="card service-card h-100 shadow-sm">
-                                                        <div class="card-body">
-                                                                <p class="h5 text-center mb-3">SQL Performance Tune‑Up
-                                                                </p>
-                                                                <ul class="lh-lg mb-0">
-                                                                        <li>Find top bottlenecks (queries, indexes)</li>
-                                                                        <li>Fix timeouts / slow endpoints</li>
-                                                                        <li>Before/after metrics + explanation</li>
-                                                                </ul>
-                                                        </div>
-                                                        <div
-                                                                class="card-footer bg-transparent border-0 text-center pb-4">
-                                                                <button class="btn btn-primary js-scrollify"
-                                                                        type="button" data-scrollto="hire">Book a quick
-                                                                        chat</button>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                                <div class="card service-card h-100 shadow-sm">
-                                                        <div class="card-body">
-                                                                <p class="h5 text-center mb-3">Integrations</p>
-                                                                <ul class="lh-lg mb-0">
-                                                                        <li>REST APIs, webhooks, auth flows</li>
-                                                                        <li>Zendesk / Jira / internal tools</li>
-                                                                        <li>Retries, logging, monitoring</li>
-                                                                </ul>
-                                                        </div>
-                                                        <div
-                                                                class="card-footer bg-transparent border-0 text-center pb-4">
-                                                                <button class="btn btn-primary js-scrollify"
-                                                                        type="button" data-scrollto="hire">Let’s scope
-                                                                        it</button>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                                <div class="text-center mt-5">
-                                        <small class="opacity-75">Prefer fixed‑price? Tell me the goal + deadline and
-                                                I’ll propose a scope.</small>
-                                </div>
-                        </div>
-                </section>
 
-                <!-- Project Showcase Carousel with Bootstrap -->
-                <section class="section my-5" id="projects">
-                        <div class="container-fluid">
-                                <p class="h2 fs-3 fs-md-2 text-center mb-4">Featured Projects</p>
-                                <div class="carousel slide carousel-fade" data-bs-interval="30000"
-                                        data-bs-ride="carousel" data-bs-touch="true" id="projectCarousel">
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                                <li class="active" data-bs-slide-to="0"
-                                                        data-bs-target="#projectCarousel"></li>
-                                                <li data-bs-slide-to="1" data-bs-target="#projectCarousel"></li>
-                                                <li data-bs-slide-to="2" data-bs-target="#projectCarousel"></li>
-                                        </ol>
-                                        <div class="carousel-inner">
-                                                <!-- Project 1 -->
-                                                <div class="carousel-item clickable active"
-                                                        onclick="openProjectModal(1)">
-                                                        <div class="card project-card shadow-sm">
-                                                                <img alt="Project Screenshot 1"
-                                                                        class="card-img-top project-image img-fluid"
-                                                                        loading="lazy"
-                                                                        src="assets/images/DroneRegistrationSystem/IndexScreen.png" />
-                                                                <div class="card-body d-flex flex-column">
-                                                                        <p class="h4 fs-5 fs-md-4 text-center">Drone
-                                                                                Registration System</p>
-                                                                        <p
-                                                                                class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">
-                                                                                A drone registration system that allows
-                                                                                users to view
-                                                                                records of registered drones, while
-                                                                                authorized users (such as admins) can
-                                                                                add, edit,
-                                                                                or delete registrations. It features a
-                                                                                user-friendly interface with role-based
-                                                                                access control, a background image
-                                                                                carousel, and options to export data as
-                                                                                spreadsheets or PDFs.
-                                                                        </p>
-                                                                        <div class="tech-chips mt-auto">
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">Angular</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">TypeScript</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">Firebase</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">HTML</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">CSS</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">JavaScript</span>
-                                                                                <span
-                                                                                        class="badge text-light fw-normal fs-7 me-1">Bootstrap</span>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <!-- Project 2 -->
-                                                <div class="carousel-item clickable" onclick="openProjectModal(2)">
-                                                        <div class="card project-card shadow-sm">
-                                                                <img alt="Project Screenshot 2"
-                                                                        class="card-img-top project-image img-fluid"
-                                                                        loading="lazy"
-                                                                        src="assets/images/FishingDashboard/Screenshot1-Overview.png" />
-                                                                <div class="card-body d-flex flex-column">
-                                                                        <p class="h4 fs-5 fs-md-4 text-center">Fishing
-                                                                                Dashboard</p>
-                                                                        <p
-                                                                                class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">
-                                                                                This Power BI dashboard provides an
-                                                                                in-depth analysis
-                                                                                of global fish catch data over time,
-                                                                                allowing users to explore yearly catch
-                                                                                trends,
-                                                                                species composition, and country-level
-                                                                                contributions through interactive
-                                                                                visuals and
-                                                                                key metrics. By leveraging dynamic
-                                                                                filters and detailed tooltips, the
-                                                                                dashboard
-                                                                                offers actionable insights into fishing
-                                                                                patterns, biodiversity, and regional
-                                                                                catch
-                                                                                distribution.</p>
-                                                                        <div class="tech-chips mt-auto">
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">Power BI</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">SQL</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">DAX</span>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                                <!-- Project 3 -->
-                                                <div class="carousel-item clickable" onclick="openProjectModal(3)">
-                                                        <div class="card project-card shadow-sm">
-                                                                <img alt="Project Screenshot 3"
-                                                                        class="card-img-top img-fluid project-image"
-                                                                        loading="lazy"
-                                                                        src="assets/images/GeekInvestments/Trades Page.png" />
-                                                                <div class="card-body d-flex flex-column">
-                                                                        <p class="h4 fs-5 fs-md-4 text-center">Geek
-                                                                                Investments</p>
-                                                                        <p
-                                                                                class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">
-                                                                                Geek Investments is a simulated platform
-                                                                                for tracking
-                                                                                trades, sharing insights, and engaging
-                                                                                with a mock investment community.
-                                                                                Developed
-                                                                                as a demonstration project, it is not
-                                                                                intended for commercial use, but offers
-                                                                                a
-                                                                                realistic, interactive environment for
-                                                                                learning and exploration.</p>
-                                                                        <div class="tech-chips mt-auto">
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">PHP/CakePHP</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">MySQL</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">HTML</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">CSS</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">JavaScript</span>
-                                                                                <span class="badge text-light fw-normal fs-7 me-1">Bootstrap</span>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <!-- Controls - Positioned Over the Card -->
-                                        <a class="carousel-control-prev" data-bs-slide="prev" href="#projectCarousel"
-                                                role="button" style="width: 5%;">
-                                                <span aria-hidden="true" class="carousel-control-prev-icon"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" data-bs-slide="next" href="#projectCarousel"
-                                                role="button" style="width: 5%;">
-                                                <span aria-hidden="true" class="carousel-control-next-icon"></span>
-                                                <span class="visually-hidden">Next</span>
-                                        </a>
-                                </div>
-                        </div>
-                </section>
-<!-- Past Projects (fullpage section) -->
-<section class="section" id="past-projects">
-  <div class="container-fluid">
-    <div class="particles-container" id="particles-js-projects"></div>
-
-    <div class="section-head">
-      <p class="h2 fs-3 fs-md-2 text-center mb-2">Past Projects</p>
-      <p class="text-center opacity-75 mx-auto mb-3" style="max-width: 900px;">
-        A selection of systems I’ve built — apps, dashboards, and tools. Click a card for details.
-      </p>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" type="button" data-filter="all">All</button>
-        <button class="filter-btn" type="button" data-filter="web">Web</button>
-        <button class="filter-btn" type="button" data-filter="data">Data</button>
-        <button class="filter-btn" type="button" data-filter="systems">Systems</button>
-      </div>
+    <!-- Up and Down Arrows for Section Navigation -->
+    <div id="scroll-buttons">
+        <button id="scroll-up" aria-label="Scroll Up" disabled><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="scroll-down" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></button>
     </div>
+    <div id="fullpage">
 
-    <div class="grid-cards" id="projectsGrid">
-      <div class="grid-card clickable" data-tags="web systems" onclick="openProjectModal(1)">
-        <p class="h4 fs-5 text-center text-md-start">Drone Registration System</p>
-        <p class="opacity-75 mb-2" style="font-size: 0.95rem;">
-          Role-based CRUD app with exports (PDF/Excel) and a clean admin workflow.
-        </p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">Angular</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">TypeScript</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Firebase</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Bootstrap</span>
-        </div>
-      </div>
+        <!--Hero with Title-->
+        <header id="hero" class="section">
+            <div class="container-fluid">
+                <div id="particles-js-hero" class="particles-container"></div>
+                <p class="h1 display-5 text-center">Welcome to My Digital Playground</p>
+                <p class="lead text-center lh-sm">Software Engineer • Data Scientist • Game Programmer</p>
+                <!-- <button class="btn btn-primary btn-lg mt-3" onclick="scrollToProjects()">Explore My Work</button> -->
+            </div>
+        </header>
 
-      <div class="grid-card clickable" data-tags="data" onclick="openProjectModal(2)">
-        <p class="h4 fs-5 text-center text-md-start">Fishing Dashboard</p>
-        <p class="opacity-75 mb-2" style="font-size: 0.95rem;">
-          Interactive Power BI dashboard exploring global catch trends and country contributions.
-        </p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">Power BI</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">SQL</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">DAX</span>
-        </div>
-      </div>
 
-      <div class="grid-card clickable" data-tags="web" onclick="openProjectModal(3)">
-        <p class="h4 fs-5 text-center text-md-start">Geek Investments</p>
-        <p class="opacity-75 mb-2" style="font-size: 0.95rem;">
-          Simulated platform for tracking trades and community-style interactions.
-        </p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">PHP/CakePHP</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">MySQL</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Bootstrap</span>
-        </div>
-      </div>
+        <!-- Project Showcase Carousel with Bootstrap -->
+        <section id="projects" class="section my-5">
+            <div class="container-fluid">
+                <p class="h2 fs-3 fs-md-2 text-center mb-4">Featured Projects</p>
+                <div id="projectCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="30000" data-bs-touch="true">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#projectCarousel" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#projectCarousel" data-bs-slide-to="2"></li>
+                    </ol>
 
-      <div class="grid-card clickable" data-tags="systems" onclick="openProjectModal(4)">
-        <p class="h4 fs-5 text-center text-md-start">Client Health Tracker</p>
-        <p class="opacity-75 mb-2" style="font-size: 0.95rem;">
-          Low-level networking project focused on client/server communication and robustness.
-        </p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">C</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Makefiles</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">TCP/IP</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Sockets</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Skills & Technologies (fullpage section) -->
-<section class="section" id="skills-technologies">
-  <div class="container-fluid">
-    <div class="particles-container" id="particles-js-skills"></div>
-
-    <div class="section-head">
-      <p class="h2 fs-3 fs-md-2 text-center mb-2">Skills &amp; Technologies</p>
-      <p class="text-center opacity-75 mx-auto mb-3" style="max-width: 900px;">
-        The stack I’m most comfortable shipping with — especially for .NET/SQL work, integrations, and reporting.
-      </p>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" type="button" data-filter="all">All</button>
-        <button class="filter-btn" type="button" data-filter="languages">Languages</button>
-        <button class="filter-btn" type="button" data-filter="web">Web</button>
-        <button class="filter-btn" type="button" data-filter="data">Data</button>
-        <button class="filter-btn" type="button" data-filter="tools">Tools</button>
-      </div>
-    </div>
-
-    <div class="grid-cards" id="skillsGrid">
-      <div class="grid-card" data-tags="languages">
-        <p class="h4 fs-5 text-center text-md-start">Programming Languages</p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">C#</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Python</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Java</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">C</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">C++</span>
-        </div>
-      </div>
-
-      <div class="grid-card" data-tags="web">
-        <p class="h4 fs-5 text-center text-md-start">Web Development</p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">HTML</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">CSS</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">JavaScript</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">jQuery</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Bootstrap</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Angular</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">TypeScript</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">PHP / CakePHP</span>
-        </div>
-      </div>
-
-      <div class="grid-card" data-tags="data">
-        <p class="h4 fs-5 text-center text-md-start">Database &amp; Data</p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">SQL</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">MS SQL</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">MySQL</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Power BI</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">DAX</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Splunk</span>
-        </div>
-      </div>
-
-      <div class="grid-card" data-tags="tools">
-        <p class="h4 fs-5 text-center text-md-start">Tools &amp; Platforms</p>
-        <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
-          <span class="badge text-light fw-normal fs-7 text-wrap">Visual Studio</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">VS Code</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">PyCharm</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Eclipse</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">GitHub</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Docker</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Postman</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">Unity</span>
-          <span class="badge text-light fw-normal fs-7 text-wrap">RabbitMQ</span>
-        </div>
-      </div>
-
-      <div class="grid-card" data-tags="web data tools">
-        <p class="h4 fs-5 text-center text-md-start">Strengths</p>
-        <ul class="about-list">
-          <li>Debugging and refactoring under pressure</li>
-          <li>SQL profiling + indexing strategies</li>
-          <li>API integrations with solid logging/retries</li>
-        </ul>
-      </div>
-
-      <div class="grid-card" data-tags="web data tools">
-        <p class="h4 fs-5 text-center text-md-start">Freelance Focus</p>
-        <ul class="about-list">
-          <li>Bugfix sprints (1–3 issues)</li>
-          <li>Performance tune-ups</li>
-          <li>Dashboards &amp; reporting</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-                <!-- About Me Section -->
-
-                <section class="section" id="hire">
-                        <div class="container-fluid py-5">
-                                <div class="particles-container" id="particles-js-hire"></div>
-                                <p class="h2 fs-3 fs-md-2 text-center mb-3">Work With Me</p>
-                                <p class="text-center mb-4 mx-auto" style="max-width: 900px;">
-                                        If you have a .NET/SQL issue, a slow endpoint, or an integration you want done
-                                        properly — send me a short message with
-                                        <strong>what’s broken</strong>, <strong>your deadline</strong>, and <strong>any
-                                                links</strong> (repo, screenshots, logs).
-                                        I’ll reply with a scope + quote.
-                                </p>
-                                <div class="row justify-content-center g-3" style="max-width: 900px; margin: 0 auto;">
-                                        <div class="col-12 col-md-4">
-                                                <a class="btn btn-primary w-100 btn-lg"
-                                                        href="mailto:emanpaulabela2000@gmail.com?subject=Freelance%20Project%20Inquiry">
-                                                        <i class="fas fa-envelope"></i> Email me
-                                                </a>
-                                        </div>
-                                        <div class="col-12 col-md-4">
-                                                <a class="btn btn-outline-light w-100 btn-lg"
-                                                        href="https://www.linkedin.com/in/emanpaulabela/"
-                                                        rel="noopener" target="_blank">
-                                                        <i class="fab fa-linkedin"></i> LinkedIn
-                                                </a>
-                                        </div>
+                    <div class="carousel-inner">
+                        <!-- Project 1 -->
+                        <div class="carousel-item clickable active" onclick="openProjectModal(1)">
+                            <div class="card project-card shadow-sm">
+                                <img src="assets/images/DroneRegistrationSystem/IndexScreen.png"
+                                    class="card-img-top project-image img-fluid" alt="Project Screenshot 1" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="h4 fs-5 fs-md-4 text-center">Drone Registration System</p>
+                                    <p class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">
+                                        A drone registration system that allows users to view
+                                        records of registered drones, while authorized users (such as admins) can add, edit,
+                                        or delete registrations. It features a user-friendly interface with role-based
+                                        access control, a background image carousel, and options to export data as
+                                        spreadsheets or PDFs.
+                                    </p>
+                                    <div class="tech-chips mt-auto">
+                                        <span class="badge text-light fw-normal fs-7 me-1">Angular</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">TypeScript</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">Firebase</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">HTML</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">CSS</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">JavaScript</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">Bootstrap</span>
+                                    </div>
                                 </div>
-                                <div class="text-center mt-4">
-                                        <small class="opacity-75">
-                                                Typical engagement: fixed‑scope sprint (1–5 days) or a small monthly
-                                                retainer. EU timezones friendly.
-                                        </small>
-                                </div>
+                            </div>
                         </div>
-                </section>
-                <section class="section my-5" id="about-me">
-                        <div class="container-fluid about-wrap">
-                                <div class="particles-container" id="particles-js-about"></div>
-
-                                <div class="about-header mb-4">
-                                        <p class="h2 fs-3 fs-md-2 text-center mb-2">About Me</p>
-                                        <p class="text-center opacity-75 mx-auto" style="max-width: 900px;">
-                                                Software engineer & game developer focused on shipping clean, reliable
-                                                solutions — with a love for systems, tools, and polish.
-                                        </p>
+                        <!-- Project 2 -->
+                        <div class="carousel-item clickable" onclick="openProjectModal(2)">
+                            <div class="card project-card shadow-sm">
+                                <img src="assets/images/FishingDashboard/Screenshot1-Overview.png"
+                                    class="card-img-top project-image img-fluid" alt="Project Screenshot 2" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="h4 fs-5 fs-md-4 text-center">Fishing Dashboard</p>
+                                    <p class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">This Power BI dashboard provides an in-depth analysis
+                                        of global fish catch data over time, allowing users to explore yearly catch trends,
+                                        species composition, and country-level contributions through interactive visuals and
+                                        key metrics. By leveraging dynamic filters and detailed tooltips, the dashboard
+                                        offers actionable insights into fishing patterns, biodiversity, and regional catch
+                                        distribution.</p>
+                                    <div class="tech-chips mt-auto">
+                                        <span class="badge text-light fw-normal fs-7 me-1">Power BI</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">SQL</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">DAX</span>
+                                    </div>
                                 </div>
-
-                                <div class="row g-4 justify-content-center align-items-stretch about-grid">
-                                        <!-- Left: Profile Card -->
-                                        <div class="col-12 col-lg-5">
-                                                <div class="card about-card h-100">
-                                                        <div class="card-body">
-                                                                <div class="about-profile">
-                                                                        <div class="about-avatar">
-                                                                                <img class="img-fluid" src="assets/images/MyPhoto.jpg" alt="Eman Paul Abela">
-                                                                        </div>
-
-                                                                        <div class="about-identity">
-                                                                                <p class="h4 mb-1">Eman Paul Abela</p>
-                                                                                <p class="mb-2 opacity-75">Freelance
-                                                                                        .NET/SQL • Integrations •
-                                                                                        Dashboards</p>
-
-                                                                                <div class="about-tags">
-                                                                                        <span class="about-tag"><i
-                                                                                                        class="fas fa-map-marker-alt"></i>
-                                                                                                Kaiserslautern,
-                                                                                                Germany</span>
-                                                                                        <span class="about-tag"><i
-                                                                                                        class="fas fa-code"></i>
-                                                                                                10+ yrs coding</span>
-                                                                                        <span class="about-tag"><i
-                                                                                                        class="fas fa-clock"></i>
-                                                                                                EU timezones</span>
-                                                                                </div>
-
-                                                                                <div class="about-actions mt-3">
-                                                                                        <a class="btn btn-github w-100"
-                                                                                                href="https://github.com/EmanPaul2000"
-                                                                                                target="_blank"
-                                                                                                rel="noopener">
-                                                                                                <i
-                                                                                                        class="fab fa-github"></i>
-                                                                                                GitHub
-                                                                                        </a>
-                                                                                        <a class="btn btn-linkedin w-100"
-                                                                                                href="https://www.linkedin.com/in/emanpaulabela/"
-                                                                                                target="_blank"
-                                                                                                rel="noopener">
-                                                                                                <i
-                                                                                                        class="fab fa-linkedin"></i>
-                                                                                                LinkedIn
-                                                                                        </a>
-                                                                                        <a class="btn btn-email w-100"
-                                                                                                href="mailto:emanpaulabela2000@gmail.com">
-                                                                                                <i
-                                                                                                        class="fas fa-envelope"></i>
-                                                                                                Email
-                                                                                        </a>
-                                                                                        <a class="btn btn-itchio w-100"
-                                                                                                href="https://emanpaul2000.itch.io"
-                                                                                                target="_blank"
-                                                                                                rel="noopener">
-                                                                                                <i
-                                                                                                        class="fa-solid fa-gamepad"></i>
-                                                                                                itch.io
-                                                                                        </a>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-
-                                        <!-- Right: Highlights Card -->
-                                        <div class="col-12 col-lg-7" id="about-highlights">
-                                                <div class="card about-card h-100">
-                                                        <div class="card-body">
-                                                                <div class="about-highlights">
-                                                                        <div class="about-highlight">
-                                                                                <p class="h5 mb-2"><i
-                                                                                                class="fas fa-bolt"></i>
-                                                                                        What I’m good at</p>
-                                                                                <ul class="about-list">
-                                                                                        <li>Debugging and untangling
-                                                                                                messy systems quickly
-                                                                                        </li>
-                                                                                        <li>SQL performance:
-                                                                                                bottlenecks, indexes,
-                                                                                                slow endpoints</li>
-                                                                                        <li>Integrations: APIs, auth
-                                                                                                flows, webhooks, retries
-                                                                                                & logging</li>
-                                                                                </ul>
-                                                                        </div>
-
-                                                                        <div class="about-highlight">
-                                                                                <p class="h5 mb-2"><i
-                                                                                                class="fas fa-layer-group"></i>
-                                                                                        Tools I use often</p>
-                                                                                <div class="about-badges">
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">C#</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">.NET</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">SQL
-                                                                                                Server</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">Angular</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">Power
-                                                                                                BI</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">Docker</span>
-                                                                                        <span
-                                                                                                class="badge text-light fw-normal">Postman</span>
-                                                                                </div>
-                                                                        </div>
-
-                                                                        <div class="about-highlight">
-                                                                                <br/>
-                                                                                <p class="h5 mb-2"><i
-                                                                                                class="fas fa-check-circle"></i>
-                                                                                        How I work</p>
-                                                                                <div class="row g-3">
-                                                                                        <div class="col-12 col-md-4">
-                                                                                                <div class="mini-card">
-                                                                                                        <p
-                                                                                                                class="mini-title">
-                                                                                                                Clear
-                                                                                                                scope
-                                                                                                        </p>
-                                                                                                        <p
-                                                                                                                class="mini-text">
-                                                                                                                Small,
-                                                                                                                measurable
-                                                                                                                deliverables.
-                                                                                                        </p>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-4">
-                                                                                                <div class="mini-card">
-                                                                                                        <p
-                                                                                                                class="mini-title">
-                                                                                                                Fast
-                                                                                                                feedback
-                                                                                                        </p>
-                                                                                                        <p
-                                                                                                                class="mini-text">
-                                                                                                                Quick
-                                                                                                                updates,
-                                                                                                                no
-                                                                                                                surprises.
-                                                                                                        </p>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-4">
-                                                                                                <div class="mini-card">
-                                                                                                        <p
-                                                                                                                class="mini-title">
-                                                                                                                Clean
-                                                                                                                handover
-                                                                                                        </p>
-                                                                                                        <p
-                                                                                                                class="mini-text">
-                                                                                                                Notes,
-                                                                                                                PRs, and
-                                                                                                                next
-                                                                                                                steps.
-                                                                                                        </p>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-
-                                                                        <div class="about-cta mt-4" id="workwithme">
-                                                                                <button class="btn btn-primary btn-lg js-scrollify"
-                                                                                        type="button"
-                                                                                        data-scrollto="hire">
-                                                                                        <i
-                                                                                                class="fas fa-paper-plane"></i>
-                                                                                        Work with me
-                                                                                </button>
-                                                                                <small class="d-block mt-2 opacity-75">
-                                                                                        Tell me what’s broken + deadline
-                                                                                        — I’ll reply with a scope +
-                                                                                        quote.
-                                                                                </small>
-                                                                        </div>
-
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
+                            </div>
                         </div>
-
-                </section>
-                <!-- Project Details Modal -->
-                <div aria-hidden="true" aria-labelledby="projectModalLabel" class="modal fade" id="projectModal"
-                        tabindex="-1">
-                        <div class="my-0 modal-dialog modal-xl w-100 modal-fullscreen-sm-down modal-dialog-centered">
-                                <div class="modal-content">
-                                        <div class="modal-header">
-                                                <p class="h5 modal-title text-center w-100 mb-0" id="projectModalLabel">
-                                                </p>
-                                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
-                                                        type="button"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                                <div class="container-fluid">
-                                                        <div class="row">
-                                                                <div class="col-12" id="modalContent">
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                        <div class="modal-footer" id="modalFooter">
-                                                <div class="container-fluid">
-                                                        <div class="row align-items-center">
-                                                                <div class="tech-chips d-flex flex-wrap gap-2">
-                                                                </div>
-                                                                <button class="btn fs-7 btn-secondary"
-                                                                        data-bs-dismiss="modal" id="modalCloseBtn"
-                                                                        type="button">Close</button>
-                                                        </div>
-                                                </div>
-                                        </div>
+                        <!-- Project 3 -->
+                        <div class="carousel-item clickable" onclick="openProjectModal(3)">
+                            <div class="card project-card shadow-sm">
+                                <img src="assets/images/GeekInvestments/Trades Page.png" class="card-img-top img-fluid project-image"
+                                    alt="Project Screenshot 3" loading="lazy">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="h4 fs-5 fs-md-4 text-center">Geek Investments</p>
+                                    <p class="card-text text-justify text-center text-md-center lh-sm fs-6 fs-md-5">Geek Investments is a simulated platform for tracking
+                                        trades, sharing insights, and engaging with a mock investment community. Developed
+                                        as a demonstration project, it is not intended for commercial use, but offers a
+                                        realistic, interactive environment for learning and exploration.</p>
+                                    <div class="tech-chips mt-auto">
+                                        <span class="badge text-light fw-normal fs-7 me-1">PHP/CakePHP</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">MySQL</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">HTML</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">CSS</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">JavaScript</span>
+                                        <span class="badge text-light fw-normal fs-7 me-1">Bootstrap</span>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Controls - Positioned Over the Card -->
+                    <a class="carousel-control-prev" href="#projectCarousel" role="button" data-bs-slide="prev"
+                        style="width: 5%;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#projectCarousel" role="button" data-bs-slide="next"
+                        style="width: 5%;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
                 </div>
+            </div>
+        </section>
+
+        <section class="section my-5" id="combined-section">
+            <div class="container-fluid">
+                <!-- Past Projects Section -->
+                <div id="past-projects" class="container-fluid py-2 my-1">
+                    <div id="particles-js-projects"></div>
+                    <p class="h2 fs-3 fs-md-2 text-center">Past Projects</p>
+                    <div class="carousel-container position-relative">
+                        <button class="carousel-control-prev" id="prevBtn1" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    
+                        <div class="carousel-track d-flex justify-content-start py-2" id="track1">
+                            <div class="skill-item mx-2 clickable" onclick="openProjectModal(1)">
+                                <p class="h4 fs-5 fs-md-4 fs-sm-6 fs-xs-7 text-center text-md-start">Drone Registration System</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Angular</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">TypeScript</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Firebase</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">HTML</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">CSS</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">JavaScript</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Bootstrap</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2 clickable" onclick="openProjectModal(2)">
+                                <p class="h4 fs-5 fs-md-4 fs-sm-6 fs-xs-7 text-center text-md-start">Fishing Dashboard</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Power BI</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">SQL</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">DAX</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2 clickable" onclick="openProjectModal(3)">
+                                <p class="h4 fs-5 fs-md-4 fs-sm-6 fs-xs-7 text-center text-md-start">Geek Investments</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">PHP/CakePHP</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">MySQL</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1">HTML</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">CSS</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1">JavaScript</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Bootstrap</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2 clickable" onclick="openProjectModal(4)">
+                                <p class="h4 fs-5 fs-md-4 fs-sm-6 fs-xs-7 text-center text-md-start">Client Health Tracker</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">C</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Makefiles</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">TCP/IP</span>
+                                    <span class="badge text-light fw-normal fs-7 me-1 text-wrap">Sockets</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <button class="carousel-control-next" id="nextBtn1" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+                <!-- Skills & Technologies Section -->
+                <div id="skills-technologies" class="container-fluid py-2 my-1">
+                    <div id="particles-js-skills"></div>
+                    <p class="h2 fs-3 fs-md-2 text-center">Skills & Technologies</p>
+                    <div class="carousel-container position-relative">
+                        <button class="carousel-control-prev" id="prevBtn2" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="carousel-track d-flex justify-content-start py-2" id="track2">
+                            <div class="skill-item mx-2">    
+                                <p class="h4 fs-5">Programming Languages</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">C#</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Python</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Java</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">C</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">C++</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2">    
+                                <p class="h4 fs-5">Web Development</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">HTML</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">CSS</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">JavaScript</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">JQuery</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Bootstrap</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Angular</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">TypeScript</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">PHP / CakePHP</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2">    
+                                <p class="h4 fs-5">Tools & Technologies</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Visual Studio Code</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Pycharm</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Visual Studio</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Eclipse</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Unity</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Docker</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Postman</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">GitHub</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">rabbitMQ</span>
+                                </div>
+                            </div>
+                            <div class="skill-item mx-2">
+                                <p class="h4 fs-5">Database & Data Handling</p>
+                                <div class="tech-chips-vertical d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">SQL</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">MS SQL</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">MySQL</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Power BI</span>
+                                    <span class="badge text-light fw-normal fs-7 text-wrap">Splunk</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-next" id="nextBtn2" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about-me" class="section my-5">
+            <div class="container-fluid">
+                <div id="particles-js-about"></div>
+                <p class="h2 fs-3 fs-md-2 text-center mb-4">About Me</p>
+                <div class="about-content d-flex flex-column flex-md-row justify-content-between align-items-center g-3">
+                    <!-- About Me Details -->
+                    <div class="about-details text-center text-md-start mb-0">
+                        <p class="fs-6"><strong>Name <i class="fas fa-user"></i> :</strong> Eman Paul Abela</p>
+                        <p class="fs-6">
+                            <strong>Age <i class="fas fa-hourglass"></i> :</strong> 
+                            <span id="age" title="Yes, this was updated using today's date which is - [DATEHERE] :)"></span>
+                        </p>
+                        <p class="fs-6"><strong>Bio <i class="fas fa-dna"></i> :</strong> A passionate software engineer and game developer with a strong interest
+                            in AI, distributed systems, and creating immersive digital experiences</p>
+                        <p class="fs-6"><strong>Skills <i class="fas fa-code"></i> :</strong> C#, Python, SQL, Unity, Angular, PHP / CakePHP</p>
+                        <p class="fs-6"><strong>Interests <i class="fas fa-puzzle-piece"></i> :</strong> Technology, Video Games, Photography, Travelling, History</p>
+                        <p class="fs-6"><strong>Location <i class="fas fa-map-marker-alt"></i> :</strong> Unzenberg, Germany</p>
+                        <p class="fs-6"><strong>Fun Fact <i class="fas fa-lightbulb"></i> :</strong> I have now been programming for over 10 years!</p>
+                        
+                    </div>
+        
+                    <!-- Profile Image and Social Links -->
+                    <div class="profile-image-links text-center mt-0 mt-md-0">
+                        <!-- Profile Image -->
+                        <div id="wrap" class="profile-image img-wrap">
+                            <img src="assets/images/MyPhoto.jpg" alt="Eman Paul Abela" class="rounded-circle img-fluid">
+                        </div>
+                        <!-- Social Links -->
+                        <div class="social-links d-flex flex-column flex-md-column mt-3">
+                            <p class="h5">Find me on:</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="https://github.com/EmanPaul2000" target="_blank" class="btn btn-github w-100 mb-2">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="https://www.linkedin.com/in/emanpaulabela/" target="_blank" class="btn btn-linkedin w-100 mb-2">
+                                        <i class="fab fa-linkedin"></i> LinkedIn
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="mailto:emanpaulabela2000@gmail.com" class="btn btn-email w-100 mb-2">
+                                        <i class="fas fa-envelope"></i> Email
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="https://emanpaul2000.itch.io" target="_blank" class="btn btn-itchio w-100">
+                                        <i class="fa-solid fa-gamepad"></i> itch.io
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+
+        <!-- Project Details Modal -->
+        <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+            <div class="my-0 modal-dialog modal-xl w-100 modal-fullscreen-sm-down modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="h5 modal-title text-center w-100 mb-0" id="projectModalLabel"></p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12" id="modalContent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="modalFooter">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="tech-chips d-flex flex-wrap gap-2">
+                                </div>
+                                <button type="button" class="btn fs-7 btn-secondary" id="modalCloseBtn" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Additional libraries and plugins -->
-        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery-elevatezoom@3.0.8/jquery.elevatezoom.min.js"></script>
-        <!-- Main script with Scrollify initialization -->
-        <script src="script.js"></script>
-        <script src="animations.js"></script>
+        
+    </div>
+
+    <!-- Additional libraries and plugins -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-elevatezoom@3.0.8/jquery.elevatezoom.min.js"></script>
+
+    <!-- Main script with Scrollify initialization -->
+    <script src="script.js"></script>
+    <script src="animations.js"></script>
 </body>
 
 </html>
